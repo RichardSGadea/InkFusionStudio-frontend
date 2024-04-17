@@ -1,0 +1,37 @@
+.logo-mask {
+    -webkit-mask-image: url("/INK_Logo_Blackpng");
+    mask-image: url("/INK_Logo_Black.png");
+  
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+  
+    -webkit-mask-position: center;
+    mask-position: center;
+  
+    -webkit-mask-size: 50%;
+    mask-size: 50%;
+}
+
+.videoTattoo{
+    width: 80em;
+    height: 25em;
+    margin: 0;
+}
+
+.page {
+    height: 100vh;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+span{
+    font-family: 'Kenia';
+    font-weight: bold;
+    font-size: 2.5em;
+}
+
+
+
+
+
+

@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom"
 import { Home } from "../Home/Home"
+import { Landing } from "../Landing/Landing"
 
 
 
@@ -13,7 +14,7 @@ export const Body = () => {
                 <Route path="*" element={<Navigate to="/"/>}/>
 
                 {/* Routes exist */}
-                <Route path="/" element={<Home />}/>
+                <Route path="/" element={<Landing />}/>
             </Routes>
         
         </>
