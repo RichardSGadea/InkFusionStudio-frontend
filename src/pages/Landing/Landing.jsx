@@ -20,7 +20,7 @@ export const Landing = () => {
                                 </span>
                                 <div className="">
                                     <Link to="/login" className="btn btn-outline">
-                                        Log Me
+                                        Login
                                     </Link>
                                     <Link to="/gallery" className="btn btn-outline">
                                         Gallery
