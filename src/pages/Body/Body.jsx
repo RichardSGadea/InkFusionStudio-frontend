@@ -16,6 +16,7 @@ export const Body = () => {
 
                 {/* Routes exist */}
                 <Route path="/" element={<Landing />}/>
+                <Route path="/home" element={<Home />}/>
                 <Route path="/login" element={<Login />}/>
                 
             </Routes>
