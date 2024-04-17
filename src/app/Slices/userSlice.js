@@ -23,7 +23,7 @@ export const userSlice = createSlice({
         logout: (state, action) => {
             return {
                 token: "",
-                decodificado: {
+                decoded: {
                     firstName: "",
                     email: "",
                     id: "",
