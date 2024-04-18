@@ -13,7 +13,7 @@
 }
 
 .videoTattoo{
-    width: 80em;
+    width: 140em;
     height: 25em;
     margin: 0;
 }
@@ -28,6 +28,27 @@ span{
     font-family: 'Kenia';
     font-weight: bold;
     font-size: 2.5em;
+}
+
+@media(max-width:1440px){
+    .videoTattoo{
+        width: 140em;
+        height: 25em;
+        margin: 0;
+    }
+}
+
+@media(min-width:1440px){
+    .videoTattoo{
+        width: 200em;
+        height: 25em;
+        margin-top: 4em;
+    }
+
+    .logo-mask{
+        -webkit-mask-size: 30%;
+        mask-size: 30%;
+    }
 }
 
 

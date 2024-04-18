@@ -15,9 +15,9 @@ export const Landing = () => {
                                 </video>
                             </div>
                             <div className="d-flex justify-content-center flex-column align-items-center">
-                                <span className="text-center text-white text-lg">
+                                {/* <span className="text-center text-white text-lg">
                                     Ink Fusion Studio
-                                </span>
+                                </span> */}
                                 <div className="">
                                     <Link to="/login" className="btn btn-outline">
                                         Login

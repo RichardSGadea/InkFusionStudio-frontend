@@ -33,9 +33,9 @@ function Header() {
             {
                 userType === admin || userType === client || userType === worker
                     ? (
-                        <Navbar expand="lg" className="navbar bg-body-tertiary">
+                        <Navbar expand="lg" className="navbar bg-dark">
                             <Container className="navigationBar">
-                                <Navbar.Brand href="/" className="navigationIcon">Ink Fusion Studio</Navbar.Brand>
+                                <Navbar.Brand href="/" className="navigationIcon text-white">Ink Fusion Studio</Navbar.Brand>
                                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                                 <Navbar.Collapse id="basic-navbar-nav">
                                     <Nav className="me-auto container">
@@ -89,19 +89,19 @@ function Header() {
                             </Container>
                         </Navbar>
                     ) : (
-                        <Navbar expand="lg" className="bg-body-tertiary">
+                        <Navbar expand="lg" className="bg-dark">
                             <Container className="navigationBar">
-                                <Navbar.Brand href="/" className="navigationIcon">Ink Fusion Studio</Navbar.Brand>
+                                <Navbar.Brand href="/" className="navigationIcon text-white">Ink Fusion Studio</Navbar.Brand>
                                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                                 <Navbar.Collapse id="basic-navbar-nav">
-                                    <Nav className="me-auto container">
+                                    <Nav className="me-auto container ">
                                         <div className='row navigationMenu'>
                                             <div className='col-6 navigationLinks'>
                                                 <Nav.Link href="/">Home</Nav.Link>
                                             </div>
                                             <div className='col-6 navigationLinks'>
-                                                <NavDropdown title="Mi cuenta" id="basic-nav-dropdown">
-                                                    <NavDropdown.Item className="itemsDropDown " href="/contact">Contact</NavDropdown.Item>
+                                                <NavDropdown title="Mi cuenta" id="basic-nav-dropdown" >
+                                                    <NavDropdown.Item className="itemsDropDown" href="/contact">Contact</NavDropdown.Item>
                                                     <NavDropdown.Divider />
                                                     {
                                                         token ? (
@@ -124,84 +124,6 @@ function Header() {
                             </Container>
                         </Navbar>
                     )
-                // : userType == client ?(
-                //     (
-                //         <Navbar expand="lg" className="bg-body-tertiary">
-                //             <Container className="navigationBar">
-                //                 <Navbar.Brand href="/" className="navigationIcon">Rick And Morty {myPassport.vecesLogeado}</Navbar.Brand>
-                //                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                //                 <Navbar.Collapse id="basic-navbar-nav">
-                //                     <Nav className="me-auto container">
-                //                         <div className='row navigationMenu'>
-                //                             <div className='col-6 navigationLinks'>
-                //                                 <Nav.Link href="/">Home</Nav.Link>
-                //                             </div>
-                //                             <div className='col-6 navigationLinks'>
-                //                                 <NavDropdown title={`${(myPassport.decodificado.userEmail).split("@")[0]}`} id="basic-nav-dropdown">
-                //                                     <NavDropdown.Item className="itemsDropDown" href="/contact">Contact</NavDropdown.Item>
-                //                                     <NavDropdown.Item className="itemsDropDown" href="/profile">Profile</NavDropdown.Item>
-                //                                     <NavDropdown.Divider />
-                //                                     {
-                //                                         token ? (
-                //                                             <NavDropdown.Item onClick={() => {
-                //                                                 logMeOut()
-                //                                                 navigate("/")
-                //                                             }}
-                //                                             >
-                //                                                 Logout
-                //                                             </NavDropdown.Item>
-                //                                         ) : (
-                //                                             <NavDropdown.Item className="itemsDropDown" onClick={() => navigate("/login")}>Login</NavDropdown.Item>
-                //                                         )
-                //                                     }
-                //                                 </NavDropdown>
-                //                             </div>
-                //                         </div>
-                //                     </Nav>
-                //                 </Navbar.Collapse>
-                //             </Container>
-                //         </Navbar>
-                //     )
-                // )
-                // :(
-                //     (
-                //         <Navbar expand="lg" className="bg-body-tertiary">
-                //             <Container className="navigationBar">
-                //                 <Navbar.Brand href="/" className="navigationIcon">Rick And Morty</Navbar.Brand>
-                //                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                //                 <Navbar.Collapse id="basic-navbar-nav">
-                //                     <Nav className="me-auto container">
-                //                         <div className='row navigationMenu'>
-                //                             <div className='col-6 navigationLinks'>
-                //                                 <Nav.Link href="/">Home</Nav.Link>
-                //                             </div>
-                //                             <div className='col-6 navigationLinks'>
-                //                                 <NavDropdown title="Mi cuenta" id="basic-nav-dropdown">
-                //                                     <NavDropdown.Item className="itemsDropDown" href="/contact">Contact</NavDropdown.Item>
-                //                                     <NavDropdown.Divider />
-                //                                     {
-                //                                         token ? (
-                //                                             <NavDropdown.Item onClick={() => {
-                //                                                 logMeOut()
-                //                                                 navigate("/")
-                //                                             }}
-                //                                             >
-                //                                                 Logout
-                //                                             </NavDropdown.Item>
-                //                                         ) : (
-                //                                             <NavDropdown.Item className="itemsDropDown" onClick={() => navigate("/login")}>Login</NavDropdown.Item>
-                //                                         )
-                //                                     }
-                //                                 </NavDropdown>
-                //                             </div>
-                //                         </div>
-                //                     </Nav>
-                //                 </Navbar.Collapse>
-                //             </Container>
-                //         </Navbar>
-                //     )
-                // )
-
             }
         </>
 
