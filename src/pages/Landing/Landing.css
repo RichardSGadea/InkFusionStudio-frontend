@@ -1,58 +1,71 @@
 .logo-mask {
     -webkit-mask-image: url("/INK_Logo_Blackpng");
     mask-image: url("/INK_Logo_Black.png");
-  
+
     -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
-  
+
     -webkit-mask-position: center;
     mask-position: center;
-  
+
     -webkit-mask-size: 50%;
     mask-size: 50%;
 }
 
-.videoTattoo{
+.videoTattoo {
     width: 140em;
     height: 25em;
     margin: 0;
 }
 
 .page {
-    height: 100vh;
+    height: 93vh;
     align-items: center;
     overflow-x: hidden;
 }
 
-span{
+span {
     font-family: 'Kenia';
     font-weight: bold;
     font-size: 2.5em;
 }
 
-@media(max-width:1440px){
-    .videoTattoo{
+.btn {
+    background: rgba(255, 255, 255, .27);
+    color: white;
+    font-weight: 700;
+    letter-spacing: 1px;
+    border: none;
+    font-size: 15px;
+    outline: none;
+    font-family: 'Kenia';
+    margin-right: 1em;
+    width: 6em;
+}
+
+.btn:hover{
+    cursor: pointer;
+    color: #ffa516;
+    transition: 0.3s;
+}
+
+@media(max-width:1440px) {
+    .videoTattoo {
         width: 140em;
         height: 25em;
         margin: 0;
     }
 }
 
-@media(min-width:1440px){
-    .videoTattoo{
+@media(min-width:1440px) {
+    .videoTattoo {
         width: 200em;
         height: 25em;
         margin-top: 4em;
     }
 
-    .logo-mask{
+    .logo-mask {
         -webkit-mask-size: 30%;
         mask-size: 30%;
     }
 }
-
-
-
-
-
-

@@ -15,9 +15,9 @@ function Header() {
 
     const myPassport = useSelector(getUserData)
     const token = myPassport?.token
-    // console.log(myPassport);
 
     const dispatch = useDispatch()
+    console.log(myPassport);
 
     const userType = myPassport?.decoded.userRole;
     const admin = "admin"
@@ -96,9 +96,6 @@ function Header() {
                                 <Navbar.Collapse id="basic-navbar-nav">
                                     <Nav className="me-auto container ">
                                         <div className='row navigationMenu'>
-                                            <div className='col-6 navigationLinks'>
-                                                <Nav.Link href="/">Home</Nav.Link>
-                                            </div>
                                             <div className='col-6 navigationLinks'>
                                                 <NavDropdown title="Mi cuenta" id="basic-nav-dropdown" >
                                                     <NavDropdown.Item className="itemsDropDown" href="/contact">Contact</NavDropdown.Item>

@@ -1,22 +1,32 @@
 .regularButtonClass {
     height: 2em;
     width: 20em;
+    margin-right: 1em;
 
-    background-color: red;
+    background: rgba(255, 255, 255, .27);
     color: white;
 
-    border-radius: 1em;
+    font-weight: 700;
+    font-size: 15px;
+    font-family: 'Kenia';
+
+    outline: none;
+    border: none;
 
     transition: 0.3s;
+    letter-spacing: 1px;
 
     display: flex;
     justify-content: center;
     align-items: center;
+
+
+
 }
 
 .regularButtonClass:hover {
 
     cursor: pointer;
-    background-color: darkred;
+    color: #ffa516;
     transition: 0.3s;
 }

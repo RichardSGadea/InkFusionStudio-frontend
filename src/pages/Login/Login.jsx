@@ -78,7 +78,7 @@ export const Login = () => {
                                 className={"regularButtonClass"}
                                 functionEmit={loginMe}
                             />
-                            <a className="p-2 link-danger" href="/register">You don't have an account? Register</a>
+                            <a className="p-2 link-white" href="/register">You don't have an account? Register</a>
                         </div>
 
                     </div>

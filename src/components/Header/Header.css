@@ -1,12 +1,20 @@
 .navbar {
     padding: 0;
+    height: 7vh;
+    
+}
+.navbar-nav {
+    padding: 0;
 }
 
 .navigationBar {
     margin: 0;
     font-size: 0.7em;
+    padding: 0;
+    padding-left: 1em;
     
 }
+
 
 .nav-link{
     color: white;
@@ -20,12 +28,14 @@
 .container {
     display: flex;
     justify-content: end;
-}
 
+}
+.navbar-toggler{
+    background-color: white;
+}
 .navbar-toggler-icon {
     width: 0.5em;
     height: 0.5em;
-    
 }
 
 .dropdown-item {
@@ -39,9 +49,6 @@
         flex-direction: column;
     }
 
-    .navigationBar {
-        width: 100vw;
-    }
 }
 
 @media(max-width:1440px) {

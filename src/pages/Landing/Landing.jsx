@@ -18,11 +18,11 @@ export const Landing = () => {
                                 {/* <span className="text-center text-white text-lg">
                                     Ink Fusion Studio
                                 </span> */}
-                                <div className="">
-                                    <Link to="/login" className="btn btn-outline">
+                                <div>
+                                    <Link to="/login" className="btn">
                                         Login
                                     </Link>
-                                    <Link to="/gallery" className="btn btn-outline">
+                                    <Link to="/gallery" className="btn">
                                         Gallery
                                     </Link>
                                 </div>
