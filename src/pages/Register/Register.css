@@ -1,0 +1,14 @@
+.registerElementsDesign{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 93vh;
+    align-items: center;
+}
+
+@media(max-width:768px){
+    .options{
+        flex-direction: column;
+    }
+}
