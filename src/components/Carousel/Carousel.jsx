@@ -7,7 +7,7 @@ function CarouselExample() {
             <Carousel.Item>
                 <img
                     className='img-studio'
-                    src="../../../public/img/estudio0.jpg"
+                    src="../../../img/estudio0.jpg"
                     alt="First slide"
                 />
                 <Carousel.Caption>
@@ -16,7 +16,7 @@ function CarouselExample() {
             <Carousel.Item>
                 <img
                     className='img-studio'
-                    src="../../../public/img/estudio1.jpg"
+                    src="../../../img/estudio1.jpg"
                     alt="Second slide"
                 />
                 <Carousel.Caption>
@@ -25,7 +25,7 @@ function CarouselExample() {
             <Carousel.Item>
                 <img
                     className='img-studio'
-                    src="../../../public/img/estudio2.jpg"
+                    src="../../../img/estudio2.jpg"
                     alt="Third slide"
                 />
                 <Carousel.Caption>

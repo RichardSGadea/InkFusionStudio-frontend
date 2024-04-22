@@ -11,7 +11,12 @@
     font-size: 0.7em;
     padding: 0;
     padding-left: 1em;
-    
+    width: 100vw;
+}
+
+.container{
+    width: 100vw;
+
 }
 
 
@@ -22,6 +27,9 @@
 .navigationIcon {
     font-size: 2em;
     font-family: 'Kenia';
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .navbar-toggler{

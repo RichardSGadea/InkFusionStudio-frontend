@@ -1,3 +1,9 @@
+h1{
+    font-size: 5em;
+    font-family: 'Kenia';
+    color: white;
+}
+
 .home-design{
     height: 95.3vh;
 }
