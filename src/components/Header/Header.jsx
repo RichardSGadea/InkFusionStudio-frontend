@@ -17,7 +17,7 @@ function Header() {
     const token = myPassport?.token
 
     const dispatch = useDispatch()
-    console.log(myPassport);
+    
 
     const userType = myPassport?.decoded.userRole;
     const admin = "admin"

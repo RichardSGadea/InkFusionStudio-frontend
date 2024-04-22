@@ -7,6 +7,10 @@
     align-items: center;
 }
 
+
+
+
+
 @media(max-width:768px){
     .options{
         flex-direction: column;

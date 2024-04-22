@@ -1,37 +1,39 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CustomInput } from "../../components/CustomInput/CustomInput";
 import { CustomButton } from "../../components/CustomButton/CustomButton";
 import "./Register.css"
 import { useNavigate } from "react-router-dom";
-import {registerCall } from "../../services/apiCalls";
+import { registerCall } from "../../services/apiCalls";
 
 
 export const Register = () => {
 
-    const [credentials,setCredentials] = useState({
-        firstName:"",
-        email:"",
-        password:"",
+    const [credentials, setCredentials] = useState({
+        firstName: "",
+        email: "",
+        password: "",
     })
 
-    const navigate = useNavigate()
 
     const [msg, setMsg] = useState("");
 
+    const [registerError, setRegisterError] = useState("")
+
+    const navigate = useNavigate()
+
     const inputHandler = (e) => {
 
-        setCredentials((prevSate) => ({
-            ...prevSate,
+        setCredentials((prevState) => ({
+            ...prevState,
             [e.target.name]: e.target.value
         }));
-        console.log(credentials);
+
     }
 
-    const registerMe = async() =>{
+    const registerMe = async (e) => {
         try {
             //Function to register....
             const res = await registerCall(credentials);
-            console.log(res);
             setMsg(res.data.message);
 
             if (res.data) {
@@ -41,13 +43,13 @@ export const Register = () => {
             }
         } catch (error) {
             console.log(error)
+            const errorMessage = error.response.data.message;
+            setRegisterError(errorMessage)
         }
-
-
-
     }
 
-    return(
+
+    return (
         <div className="container-fluid">
             <div className="row">
                 <div className="col-12 p-0">
@@ -58,18 +60,25 @@ export const Register = () => {
                             handlerProp={(e) => inputHandler(e)}
                             placeholderProp={"name"}
                         />
-                        <CustomInput
-                            typeProp={"email"}
-                            nameProp={"email"}
-                            handlerProp={(e) => inputHandler(e)}
-                            placeholderProp={"email"}
-                        />
-                        <CustomInput
-                            typeProp={"password"}
-                            nameProp={"password"}
-                            handlerProp={(e) => inputHandler(e)}
-                            placeholderProp={"password"}
-                        />
+                        <div className="d-flex ml-4">
+                            <CustomInput
+                                className={""}
+                                typeProp={"email"}
+                                nameProp={"email"}
+                                handlerProp={(e) => inputHandler(e)}
+                                placeholderProp={"email"}
+                            />
+                        </div>
+                        <div className="d-flex ml-4">
+                            <CustomInput
+                                className={registerError.includes("password") ? "" : ""}
+                                typeProp={"password"}
+                                nameProp={"password"}
+                                handlerProp={(e) => inputHandler(e)}
+                                placeholderProp={"password"}
+                            />
+
+                        </div>
                         <div className="options d-flex">
                             <CustomButton
                                 title={"Register"}
@@ -78,6 +87,7 @@ export const Register = () => {
                             />
                             <a className="p-2 link-white" href="/login">Do you have an account? Login</a>
                         </div>
+                        <h5>{registerError}</h5>
 
                     </div>
                 </div>

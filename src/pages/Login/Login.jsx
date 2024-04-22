@@ -7,6 +7,7 @@ import { loginCall } from "../../services/apiCalls";
 import { decodeToken } from "react-jwt";
 import { login } from "../../app/Slices/userSlice";
 import { useNavigate } from "react-router-dom";
+import { inputValidator } from "../../utils/validators";
 
 export const Login = () => {
 
@@ -15,11 +16,27 @@ export const Login = () => {
         password: "",
     });
 
+    const [isValidContent, setIsValidContent] = useState({
+        email: "",
+        password: ""
+    })
+
+    const [loginError, setLoginError] = useState("");
+
     const [msg, setMsg] = useState("");
 
     const navigate = useNavigate();
 
     const dispatch = useDispatch()
+
+    const inputValidatorHandler = (e) => {
+        const errorMessage = inputValidator(e.target.value, e.target.name)
+        setIsValidContent((prevSate) => ({
+            ...prevSate,
+            [e.target.name]: errorMessage
+        }))
+        // console.log("is "+ e.target.value + " a valid "+ e.target.name + "?", isValid);
+    }
 
     const inputHandler = (e) => {
 
@@ -27,11 +44,10 @@ export const Login = () => {
             ...prevSate,
             [e.target.name]: e.target.value
         }));
-        // console.log(credentials);
     }
 
     const loginMe = async () => {
-        //Funtion to login...
+        //Function to login...
         const res = await loginCall(credentials);
         if (res.data.token) {
             //decoded token....
@@ -42,12 +58,11 @@ export const Login = () => {
                 decoded: uDecoded,
             }
 
-            console.log(passport);
             dispatch(login(passport))
 
             setMsg(`${uDecoded.userRole}, bienvenid@ de nuevo.`)
 
-            setTimeout(() =>{
+            setTimeout(() => {
                 navigate("/home")
             }, 3000)
         }
@@ -65,12 +80,18 @@ export const Login = () => {
                             nameProp={"email"}
                             handlerProp={(e) => inputHandler(e)}
                             placeholderProp={"e-mail"}
+                            onBlurHandler={(e) => inputValidatorHandler(e)}
+                            // errorText={isValidContent.email ? "" : "email incorrecto"}
+                            errorText={isValidContent.email}
                         />
                         <CustomInput
                             typeProp={"password"}
                             nameProp={"password"}
                             handlerProp={(e) => inputHandler(e)}
                             placeholderProp={"password"}
+                            onBlurHandler={(e) => inputValidatorHandler(e)}
+                            // errorText={isValidContent.email ? "" : "email incorrecto"}
+                            errorText={isValidContent.password}
                         />
                         <div className="options d-flex">
                             <CustomButton
