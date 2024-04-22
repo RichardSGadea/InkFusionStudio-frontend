@@ -74,7 +74,7 @@ export const Login = () => {
         <div className="container-fluid">
             <div className="row">
                 <div className="col-12 p-0">
-                    <div className="login-container loginElementsDesign bg-secondary">
+                {msg === "" ? (<div className="login-container loginElementsDesign bg-secondary">
                         <CustomInput
                             typeProp={"email"}
                             nameProp={"email"}
@@ -102,7 +102,10 @@ export const Login = () => {
                             <a className="p-2 link-white" href="/register">You don't have an account? Register</a>
                         </div>
 
-                    </div>
+                    </div>):(
+                        <div>{msg}</div>
+                    )}
+                    
                 </div>
             </div>
         </div>

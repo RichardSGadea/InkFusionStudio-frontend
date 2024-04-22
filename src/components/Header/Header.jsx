@@ -97,7 +97,7 @@ function Header() {
                                     <Nav className="me-auto container ">
                                         <div className='row navigationMenu'>
                                             <div className='col-6 navigationLinks'>
-                                                <NavDropdown title="Mi cuenta" id="basic-nav-dropdown" >
+                                                <NavDropdown title="My account" id="basic-nav-dropdown" >
                                                     <NavDropdown.Item className="itemsDropDown" href="/contact">Contact</NavDropdown.Item>
                                                     <NavDropdown.Divider />
                                                     {

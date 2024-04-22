@@ -10,10 +10,11 @@
 
     -webkit-mask-size: 50%;
     mask-size: 50%;
+
 }
 
 .videoTattoo {
-    width: 140em;
+    width: 130em;
     height: 25em;
     margin: 0;
 }

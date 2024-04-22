@@ -1,7 +1,6 @@
 .navbar {
     padding: 0;
-    
-    
+
 }
 .navbar-nav {
     padding: 0;
@@ -25,13 +24,9 @@
     font-family: 'Kenia';
 }
 
-.container {
-    display: flex;
-    justify-content: end;
-
-}
 .navbar-toggler{
     background-color: white;
+    
 }
 .navbar-toggler-icon {
     width: 0.5em;
@@ -43,16 +38,14 @@
     align-items: center;
 }
 
+.navigationMenu{
+    width: 97vw;
+}
+
 
 @media(max-width:768px) {
     .navigationLinks {
         flex-direction: column;
     }
 
-}
-
-@media(max-width:1440px) {
-    .dropdown{
-        margin-right: 10em;
-    }
 }

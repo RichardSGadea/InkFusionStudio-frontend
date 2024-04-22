@@ -4,6 +4,7 @@ import { CustomButton } from "../../components/CustomButton/CustomButton";
 import "./Register.css"
 import { useNavigate } from "react-router-dom";
 import { registerCall } from "../../services/apiCalls";
+import { inputValidator } from "../../utils/validators";
 
 
 export const Register = () => {
@@ -14,12 +15,22 @@ export const Register = () => {
         password: "",
     })
 
-
-    const [msg, setMsg] = useState("");
+    const [isValidContent, setIsValidContent] = useState({
+        email: "",
+        password: ""
+    })
 
     const [registerError, setRegisterError] = useState("")
 
     const navigate = useNavigate()
+
+    const inputValidatorHandler = (e) => {
+        const errorMessage = inputValidator(e.target.value, e.target.name)
+        setIsValidContent((prevSate) => ({
+            ...prevSate,
+            [e.target.name]: errorMessage
+        }))
+    }
 
     const inputHandler = (e) => {
 
@@ -29,6 +40,8 @@ export const Register = () => {
         }));
 
     }
+
+    const errorText=""
 
     const registerMe = async (e) => {
         try {
@@ -55,27 +68,31 @@ export const Register = () => {
                 <div className="col-12 p-0">
                     <div className="login-container registerElementsDesign bg-secondary">
                         <CustomInput
+                            errorText={errorText}
                             typeProp={"text"}
                             nameProp={"firstName"}
                             handlerProp={(e) => inputHandler(e)}
                             placeholderProp={"name"}
+                            onBlurHandler={(e) => inputValidatorHandler(e)}
                         />
                         <div className="d-flex ml-4">
                             <CustomInput
-                                className={""}
+                                errorText={errorText}
                                 typeProp={"email"}
                                 nameProp={"email"}
                                 handlerProp={(e) => inputHandler(e)}
                                 placeholderProp={"email"}
+                                onBlurHandler={(e) => inputValidatorHandler(e)}
                             />
                         </div>
                         <div className="d-flex ml-4">
                             <CustomInput
-                                className={registerError.includes("password") ? "" : ""}
+                                errorText={errorText}
                                 typeProp={"password"}
                                 nameProp={"password"}
                                 handlerProp={(e) => inputHandler(e)}
                                 placeholderProp={"password"}
+                                onBlurHandler={(e) => inputValidatorHandler(e)}
                             />
 
                         </div>
