@@ -1,4 +1,4 @@
-.navbar {
+/* .navbar {
     padding: 0;
 
 }
@@ -56,4 +56,26 @@
         flex-direction: column;
     }
 
+} */
+
+.navigationBar {
+    margin: 0;
+    
+}
+
+.navigationIcon {
+    font-size: 2em;
+    font-family: 'Kenia';
+}
+
+.navbar-toggler{
+    background-color: white;
+    
+}
+.nav-link{
+    color: white;
+}
+
+.nav-link:hover{
+    color: #ffa516;
 }
