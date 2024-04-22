@@ -1,0 +1,16 @@
+.img-studio{
+    width: 100%;
+    height: 750px;
+}
+
+@media(max-width:1024px){
+    .img-studio{
+        height: 450px;
+    }
+}
+
+@media(max-width:550px){
+    .img-studio{
+        height: 250px;
+    }
+}

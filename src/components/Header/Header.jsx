@@ -41,7 +41,7 @@ function Header() {
                                     <Nav className="me-auto container">
                                         <div className='row navigationMenu'>
                                             <div className='col-6 navigationLinks'>
-                                                <Nav.Link href="/">Home</Nav.Link>
+                                                <Nav.Link href="/home">Home</Nav.Link>
                                             </div>
                                             <div className='col-6 navigationLinks'>
                                                 <NavDropdown title={(myPassport.decoded.userEmail).split("@")[0]} id="basic-nav-dropdown navbar-left">

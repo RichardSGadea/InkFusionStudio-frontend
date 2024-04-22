@@ -1,0 +1,10 @@
+.home-design{
+    height: 95.3vh;
+}
+
+.container-carosuel{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
