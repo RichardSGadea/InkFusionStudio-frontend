@@ -23,6 +23,9 @@
     height: 95.3vh;
     align-items: center;
     overflow-x: hidden;
+    background-image: url(../../../public/img/bg-landing.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 span {

@@ -8,7 +8,7 @@ export const Landing = () => {
             <div className="container-fluid">
                 <div className="row overflow-auto">
                     <div className="col-12 p-0 overflow-auto">
-                        <div className="page bg-secondary justify-center">
+                        <div className="page justify-center">
                             <div className="logo-mask animate-fade d-flex justify-center">
                                 <video playsInline autoPlay muted loop className="videoTattoo">
                                     <source src="https://www.pexels.com/es-es/download/video/4125750/" />

@@ -25,7 +25,6 @@ function App() {
           <>
             <Header />
             <Body />
-
           </>
         ) : (
           <div className='loader-style d-flex flex-column justify-content-center align-items-center bg-secondary'>
