@@ -6,7 +6,9 @@ export const CustomInput = ({
   placeholderProp,
   handlerProp,
   onBlurHandler,
-  errorText
+  errorText,
+  isDisabled,
+  value
 }) => {
   // props, properties (obj)
 
@@ -19,6 +21,8 @@ export const CustomInput = ({
         placeholder={placeholderProp}
         onChange={(e) => handlerProp(e)}
         onBlur={(e) => onBlurHandler(e)}
+        disabled={isDisabled}
+        value={value}
       />
       <p>{errorText}</p>
     </>
