@@ -13,7 +13,7 @@ export const CustomInput = ({
   // props, properties (obj)
 
   return (
-    <>
+    <div className="custom-input-container">
       <input
         className={errorText === "" ? "customInputDesign" : "customInputDesign input-error"}
         type={typeProp}
@@ -25,7 +25,7 @@ export const CustomInput = ({
         value={value}
       />
       <p>{errorText}</p>
-    </>
+    </div>
   );
 };
 

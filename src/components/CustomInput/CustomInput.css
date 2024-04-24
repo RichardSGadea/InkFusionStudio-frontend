@@ -1,9 +1,12 @@
 .customInputDesign{
-    margin-top: 2em;
-    margin: 1em;
     border-radius: 1em;
     height: 2em;
     width: 20em;
+}
+
+
+.custom-input-container{
+    height: 4em;
 }
 
 .input-error{

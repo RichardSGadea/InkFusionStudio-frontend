@@ -74,38 +74,41 @@ export const Login = () => {
         <div className="container-fluid">
             <div className="row">
                 <div className="col-12 p-0">
-                {msg === "" ? (<div className="login-container loginElementsDesign bg-secondary">
-                        <CustomInput
-                            typeProp={"email"}
-                            nameProp={"email"}
-                            handlerProp={(e) => inputHandler(e)}
-                            placeholderProp={"e-mail"}
-                            onBlurHandler={(e) => inputValidatorHandler(e)}
-                            // errorText={isValidContent.email ? "" : "email incorrecto"}
-                            errorText={isValidContent.email}
-                        />
-                        <CustomInput
-                            typeProp={"password"}
-                            nameProp={"password"}
-                            handlerProp={(e) => inputHandler(e)}
-                            placeholderProp={"password"}
-                            onBlurHandler={(e) => inputValidatorHandler(e)}
-                            // errorText={isValidContent.email ? "" : "email incorrecto"}
-                            errorText={isValidContent.password}
-                        />
-                        <div className="options d-flex">
-                            <CustomButton
-                                title={"log me!"}
-                                className={"regularButtonClass"}
-                                functionEmit={loginMe}
-                            />
-                            <a className="p-2 link-white" href="/register">You don't have an account? Register</a>
-                        </div>
+                    <div className="login-container loginElementsDesign bg-secondary">
+                        {msg === "" ? (
+                            <>
+                                <CustomInput
+                                    typeProp={"email"}
+                                    nameProp={"email"}
+                                    handlerProp={(e) => inputHandler(e)}
+                                    placeholderProp={"e-mail"}
+                                    onBlurHandler={(e) => inputValidatorHandler(e)}
+                                    // errorText={isValidContent.email ? "" : "email incorrecto"}
+                                    errorText={isValidContent.email}
+                                />
+                                <CustomInput
+                                    typeProp={"password"}
+                                    nameProp={"password"}
+                                    handlerProp={(e) => inputHandler(e)}
+                                    placeholderProp={"password"}
+                                    onBlurHandler={(e) => inputValidatorHandler(e)}
+                                    // errorText={isValidContent.email ? "" : "email incorrecto"}
+                                    errorText={isValidContent.password}
+                                />
+                                <div className="options d-flex">
+                                    <CustomButton
+                                        title={"log me!"}
+                                        className={"regularButtonClass"}
+                                        functionEmit={loginMe}
+                                    />
+                                    <a className="p-2 link-white" href="/register">You don't have an account? Register</a>
+                                </div>
+                            </>
+                        ) : (
+                            <div>{msg}</div>
+                        )}
+                    </div>
 
-                    </div>):(
-                        <div>{msg}</div>
-                    )}
-                    
                 </div>
             </div>
         </div>

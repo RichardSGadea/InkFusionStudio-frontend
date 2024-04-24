@@ -4,10 +4,17 @@ import Modal from "react-bootstrap/Modal";
 import { useNavigate } from "react-router-dom";
 import { CustomInput } from "../CustomInput/CustomInput";
 import { updateProfile } from "../../services/apiCalls";
-
+import "./ModalCustom.css"
+import { inputValidator } from "../../utils/validators";
 
 function ModalCustom({ profileData, inputHandler, token }) {
     const [show, setShow] = useState(false);
+
+    const [isValidContent, setIsValidContent] = useState({
+        firstName: "",
+        email: "",
+        lastName: ""
+    })
 
     const navigate = useNavigate();
 
@@ -23,9 +30,23 @@ function ModalCustom({ profileData, inputHandler, token }) {
         
     //console.log(profileData);
 
-    const handleUpdate = () => {
-        updateProfile(profileData, token)
+    const inputValidatorHandler = (e) => {
+        const errorMessage = inputValidator(e.target.value, e.target.name)
+        setIsValidContent((prevSate) => ({
+            ...prevSate,
+            [e.target.name]: errorMessage
+        }))
     }
+
+    const handleUpdate = () => {
+        if(isValidContent.email !== "" || isValidContent.lastName !== "" || isValidContent.firstName !== ""){
+            alert("Check inputs")
+        }else{
+            updateProfile(profileData, token)
+        }
+    }
+
+    
 
     return (
         <>
@@ -45,14 +66,8 @@ function ModalCustom({ profileData, inputHandler, token }) {
                         value={profileData.firstName}
                         isDisabled=""
                         handlerProp={inputHandler}
-                    />
-                    <CustomInput
-                        typeProp="email"
-                        nameProp="email"
-                        placeholderProp="email"
-                        value={profileData.email}
-                        isDisabled=""
-                        handlerProp={inputHandler}
+                        onBlurHandler={(e) => inputValidatorHandler(e)}
+                        errorText={isValidContent.firstName}
                     />
                     <CustomInput
                         typeProp="text"
@@ -61,17 +76,30 @@ function ModalCustom({ profileData, inputHandler, token }) {
                         value={profileData.lastName}
                         isDisabled=""
                         handlerProp={inputHandler}
+                        onBlurHandler={(e) => inputValidatorHandler(e)}
+                        errorText={isValidContent.lastName}
                     />
+                    <CustomInput
+                        typeProp="email"
+                        nameProp="email"
+                        placeholderProp="email"
+                        value={profileData.email}
+                        isDisabled=""
+                        handlerProp={inputHandler}
+                        onBlurHandler={(e) => inputValidatorHandler(e)}
+                        errorText={isValidContent.email}
+                    />    
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
+                    <Button className="btnClose" variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={() => {
+                    <Button className="btnSave" variant="primary" onClick={() => {
+                        console.log(isValidContent);
                         handleUpdate() 
                         handleClose()
                     }}>
-                        Save Changes
+                        Save 
                     </Button>
                 </Modal.Footer>
             </Modal>
