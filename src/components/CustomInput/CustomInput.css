@@ -13,3 +13,8 @@
     border-width: 0.2em;
     border-color: red;
 }
+
+.input-password{
+    border-width: 0.2em;
+    border-color: blue;
+}

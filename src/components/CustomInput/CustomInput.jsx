@@ -15,7 +15,7 @@ export const CustomInput = ({
   return (
     <div className="custom-input-container">
       <input
-        className={errorText === "" ? "customInputDesign" : "customInputDesign input-error"}
+        className={errorText === "" ? "customInputDesign" : errorText === "Change password" ? "customInputDesign input-password" : "customInputDesign input-error"}
         type={typeProp}
         name={nameProp}
         placeholder={placeholderProp}
