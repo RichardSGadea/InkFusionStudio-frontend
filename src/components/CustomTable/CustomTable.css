@@ -1,3 +1,25 @@
 .btnModalUserProfile{
     padding: 0;
 }
+
+.delete-button {
+    padding: 0.2em;
+    background-color: red;
+    border-radius: 30%;
+    margin-top: 0.2em;
+    margin-left: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.delete-button:hover {
+    cursor: crosshair;
+}
+
+.confirm-delete {
+    background-color: teal;
+}
+
+.display-none {
+    display: none;
+}

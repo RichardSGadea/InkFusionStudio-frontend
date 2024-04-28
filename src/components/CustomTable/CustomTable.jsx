@@ -1,11 +1,11 @@
 import Table from 'react-bootstrap/Table';
 import { useEffect, useState } from 'react';
-import { bringAllClients, bringAllWorkers, bringOneUser } from '../../services/apiCalls';
+import { bringAllClients, bringAllWorkers, bringOneUser, deleteUserById } from '../../services/apiCalls';
 import { useSelector } from 'react-redux';
 import { getUserData } from '../../app/Slices/userSlice';
-import "./CustomTable"
 import ModalCustom from '../ModalCustom/ModalCustom';
 import { useLocation } from 'react-router-dom';
+import "./CustomTable.css"
 
 function CustomTable() {
 
@@ -13,6 +13,7 @@ function CustomTable() {
     const [totalPages, setTotalPages] = useState()
     const [currentPage, setCurrentPage] = useState(1)
     const [userProfile, setUserProfile] = useState({})
+    const [areYouDeletingMe, setAreYouDeletingMe] = useState(null);
 
     const location = useLocation()
     const path = location.pathname
@@ -57,6 +58,20 @@ function CustomTable() {
         fetchUsers()
     }, [currentPage])
 
+    // Function to start deleted user and show or hidden confirmation button
+    const deleteUserStepOne = (id) => {
+        if (areYouDeletingMe === id) {
+            setAreYouDeletingMe(null);
+        } else {
+            setAreYouDeletingMe(id);
+        }
+    };
+
+    const deleteUser = async (id) => {
+        const res = await deleteUserById(token, id);
+        console.log(res);
+    };
+
     return (
         <div className='container-fluid'>
             <Table striped bordered hover>
@@ -85,7 +100,20 @@ function CustomTable() {
                                             path={path}
                                             token={token}
                                         />
-                                        <button>D</button>
+                                        <div
+                                            className="delete-button"
+                                            onClick={() => deleteUserStepOne(item.id)}
+                                        >Delete</div>
+                                        <div
+                                            className={
+                                                // Deleted confirm button
+                                                areYouDeletingMe === item.id
+                                                    ? "delete-button confirm-delete "
+                                                    : "delete-button confirm-delete display-none"
+                                            }
+                                            onClick={() => deleteUser(item.id)}
+                                        >Confirm</div>
+
                                     </div>
                                 </td>
                             </tr>
