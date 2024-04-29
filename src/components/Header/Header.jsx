@@ -50,7 +50,7 @@ function Header() {
                                                             <>
                                                                 <NavDropdown.Item className="itemsDropDown" href="/contact">Contact</NavDropdown.Item>
                                                                 <NavDropdown.Item className="itemsDropDown" href="/profile">Profile</NavDropdown.Item>
-                                                                <NavDropdown.Item className="itemsDropDown" href="/info">Info</NavDropdown.Item>
+                                                                <NavDropdown.Item className="itemsDropDown" href="/users">Users</NavDropdown.Item>
                                                                 <NavDropdown.Divider />
                                                             </>
                                                         ) : userType === worker ? (

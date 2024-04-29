@@ -18,19 +18,67 @@ export const bringProfile = async (token) => {
             Authorization: `Bearer ${token}`
         }
     }
-    const res = await axios.get(`${API_URL}/users/profile`,config)
-    // console.log(res, "bringProfile");
+    const res = await axios.get(`${API_URL}/users/profile`, config)
+    
     return res.data
 }
 
-export const updateProfile = async (data,token) =>{
+export const updateProfile = async (data, token) => {
     const config = {
         headers: {
             Authorization: `Bearer ${token}`
         }
     }
-    // console.log(data, "yo soy data antes")
-    const res = await axios.put(`${API_URL}/users/profile`,data,config)
-    // console.log(res, "yo soy res")
+    
+    const res = await axios.put(`${API_URL}/users/profile`, data, config)
+    return res
+}
+
+export const updateProfileById = async (data,id, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    
+    const res = await axios.put(`${API_URL}/users/${id}`, data, config)
+    return res
+}
+
+export const bringAllClients = async (token, page) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    const res = await axios.get(`${API_URL}/users/allUsers/?page=${page}`, config)
+    return res.data
+}
+export const bringAllWorkers = async (token, page) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    const res = await axios.get(`${API_URL}/users/allWorkers/?page=${page}`, config)
+    return res.data
+}
+
+export const bringOneUser = async (token,id) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    const res = await axios.get(`${API_URL}/users/${id}`,config)
+    return res.data
+}
+export const deleteUserById = async (token,id) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    const res = await axios.delete(`${API_URL}/users/${id}`,config)
     return res
 }

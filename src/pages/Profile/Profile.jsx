@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { getUserData } from "../../app/Slices/userSlice"
 import { bringProfile } from "../../services/apiCalls"
 import ModalCustom from "../../components/ModalCustom/ModalCustom"
+import { useLocation } from "react-router-dom"
 
 export const Profile = () => {
 
@@ -16,8 +17,9 @@ export const Profile = () => {
         lastName: "",
         email: ""
     })
-    // const [isEditing, setIsEditing] = useState(false)
-    // const [errorMsg, setErrorMsg] = useState("")
+    
+    const location = useLocation()
+    const path = location.pathname
 
     const dispatch = useDispatch();
 
@@ -96,6 +98,7 @@ export const Profile = () => {
                                         profileData={profileData}
                                         inputHandler={inputHandler}
                                         token={token}
+                                        path={path}
                                     />
                                 </div>
                             </div>
