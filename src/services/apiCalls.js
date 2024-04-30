@@ -93,3 +93,14 @@ export const bringAppointmentsUsers = async (token) => {
     console.log(res,"hola mis citas");
     return res.data
 }
+
+export const bringAppointmentsWorkers = async (token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    const res = await axios.get(`${API_URL}/appointments/worker/`, config)
+    console.log(res,"hola mis citas");
+    return res.data
+}

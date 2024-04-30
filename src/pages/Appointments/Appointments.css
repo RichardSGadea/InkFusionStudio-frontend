@@ -1,0 +1,11 @@
+.appointmentsDesign{
+    height: 83vh;
+}
+
+.cellTable{
+    border: 0.1em solid black;
+}
+
+li{
+    list-style: none;
+}

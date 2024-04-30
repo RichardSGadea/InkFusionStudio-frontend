@@ -2,7 +2,8 @@ import { useSelector } from "react-redux"
 import "./Appointments.css"
 import { getUserData } from "../../app/Slices/userSlice"
 import { useEffect, useState } from "react"
-import { bringAppointmentsUsers } from "../../services/apiCalls"
+import { bringAppointmentsUsers, bringAppointmentsWorkers } from "../../services/apiCalls"
+import dayjs from "dayjs"
 
 export const Appointments = () => {
 
@@ -15,8 +16,17 @@ export const Appointments = () => {
     useEffect(() => {
         const fetchAppointments = async () => {
             try {
-                const res = await bringAppointmentsUsers(userReduxData.token);
-                setUserAppointments(res)
+                if(userType === "client"){
+                    const res = await bringAppointmentsUsers(userReduxData.token)
+                    setUserAppointments(res)
+                }else if (userType === "worker"){
+                    const res = await bringAppointmentsWorkers(userReduxData.token)
+                    setUserAppointments(res)
+                }else{
+
+                }
+
+                
             } catch (error) {
                 console.log(error);
             }
@@ -27,30 +37,32 @@ export const Appointments = () => {
 
     return (
 
-        <div className="container-fluid secondary w-100">
-            <div className="row">
-                <div className="col-2">
+        <div className="container-fluid secondary">
+            <div className="row appointmentsDesign">
+                <div className="col-3">
 
                 </div>
-                <div className="col-8">
+                <div className="col-6 d-flex justify-content-center align-items-start mt-2">
                     <table>
                         <thead>
                             <tr>
-                                <th>Date</th>
-                                <th>Hour</th>
-                                <th>Work</th>
+                                <th className="cellTable">Date</th>
+                                <th className="cellTable">Hour</th>
+                                {userType==="worker" && <th className="cellTable">Client</th>}
+                                <th className="cellTable">Work</th>
                             </tr>
                         </thead>
                         <tbody>
                             {userAppointments.map((element) => {
                                 return (
                                     <tr key={element.id}>
-                                        <td>{element.appointmentDate}</td>
-                                        <td>{element.appointmentDate}</td>
-                                        <td>
+                                        <td className="cellTable">{dayjs(element.appointmentDate).format("DD/MM/YYYY")}</td>
+                                        <td className="cellTable">{dayjs(element.appointmentDate).format("hh:mm A")}</td>
+                                        {userType==="worker" && <td className="cellTable">{element.client.firstName}</td>}
+                                        <td className="cellTable">
                                             <ul key={element.id}>
                                                 {(element.appointmentPortfolios).map((portfolio,index) => {
-                                                    return(<li key={index}>{`${portfolio.name}____${portfolio.price}€`}
+                                                    return(<li key={index}>{`${portfolio.name} ---- ${portfolio.price}€`}
                                                     </li>)
                                                 })}
                                             </ul>
@@ -60,7 +72,7 @@ export const Appointments = () => {
                         </tbody>
                     </table>
                 </div>
-                <div className="col-2">
+                <div className="col-3">
 
                 </div>
             </div>
