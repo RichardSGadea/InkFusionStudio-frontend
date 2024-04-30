@@ -5,6 +5,7 @@ import { Login } from "../Login/Login"
 import { Register } from "../Register/Register"
 import { Profile } from "../Profile/Profile"
 import { Users } from "../Users/Users"
+import { Appointments } from "../Appointments/Appointments"
 
 
 
@@ -24,6 +25,7 @@ export const Body = () => {
                 <Route path="/register" element={<Register />}/>
                 <Route path="/profile" element={<Profile />}/>
                 <Route path="/users" element={<Users />}/>
+                <Route path="/appointments" element={<Appointments/>}/>
                 
             </Routes>
         

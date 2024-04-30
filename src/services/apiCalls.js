@@ -82,3 +82,14 @@ export const deleteUserById = async (token,id) => {
     const res = await axios.delete(`${API_URL}/users/${id}`,config)
     return res
 }
+
+export const bringAppointmentsUsers = async (token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    const res = await axios.get(`${API_URL}/appointments/client/`, config)
+    console.log(res,"hola mis citas");
+    return res.data
+}
