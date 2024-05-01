@@ -17,7 +17,7 @@ function Header() {
     const token = myPassport?.token
 
     const dispatch = useDispatch()
-    
+
 
     const userType = myPassport?.decoded.userRole;
     const admin = "admin"
@@ -40,12 +40,13 @@ function Header() {
                                 <Navbar.Collapse id="basic-navbar-nav">
                                     <Nav className="me-auto container">
                                         <div className='row navigationMenu'>
-                                            <div className='col-6 navigationLinks'>
-                                                <Nav.Link href="/home">Home</Nav.Link>
-                                                <Nav.Link href="/appointments">Appointments</Nav.Link>
-
+                                            <div className='col-6'>
+                                                <div className=''>
+                                                    <Nav.Link href="/home">Home</Nav.Link>
+                                                    <Nav.Link href="/appointments">Appointments</Nav.Link>
+                                                </div>
                                             </div>
-                                            <div className='col-6 navigationLinks'>
+                                            <div className='col-6'>
                                                 <NavDropdown title={(myPassport.decoded.userEmail).split("@")[0]} id="basic-nav-dropdown navbar-left">
                                                     {userType === admin
                                                         ? (
@@ -67,7 +68,7 @@ function Header() {
                                                                 <NavDropdown.Item className="itemsDropDown" href="/profile">Profile</NavDropdown.Item>
                                                                 <NavDropdown.Divider />
                                                             </>
-                                                        ) 
+                                                        )
                                                     }
 
                                                     {
