@@ -5,6 +5,7 @@ import { bringAllAppointments, bringAppointmentsUsers, bringAppointmentsWorkers 
 import dayjs from "dayjs"
 import Card from 'react-bootstrap/Card';
 import "./Appointments.css"
+import { CustomButton } from "../../components/CustomButton/CustomButton"
 
 export const Appointments = () => {
 
@@ -45,29 +46,49 @@ export const Appointments = () => {
 
         <div className="container-fluid appointmentsDesign bg-secondary">
             <div className="row">
-                <div className="col-3 bg-secondary p-0">
+
+                <div className="col-3 bg-secondary p-0 d-flex justify-content-center align-items-center ">
+                    {userType === "client" &&
+                        <CustomButton
+                            title={"CREATE NEW APPOINTMENT"}
+                            className={"newAppointment m-0 w-50"}
+
+                        />
+                    }
                 </div>
+
+
                 <div className="col-6 p-0">
                     <div className="d-flex flex-column justify-content-start align-items-start bg-secondary">
                         {userAppointments.map((element) => {
                             return (
-                                
-                                    <Card key={element.id} className="w-100 m-1" border="warning" style={{ width: '18rem' }}>
-                                        <Card.Header>Appointment</Card.Header>
-                                        <Card.Body>
-                                            <Card.Title>{`${dayjs(element.appointmentDate).format("DD/MM/YYYY")}  ---------  ${dayjs(element.appointmentDate).format("hh:mm A")}`}</Card.Title>
-                                                <div className="d-flex justify-content-between">
-                                                    {userType === "worker" || userType === "admin" && (<span>{`Client: ${element.client.firstName}`}</span>)}
-                                                    {userType === "admin" && (<span>{`Worker: ${element.worker.firstName}`}</span>)}
-                                                </div>
-                                                <ul key={element.id}>
-                                                    {(element.appointmentPortfolios).map((portfolio) => {
-                                                        return (<li key={portfolio.id}>{`${portfolio.name} ---- ${portfolio.price}€`}
-                                                        </li>)
-                                                    })}
-                                                </ul>
-                                        </Card.Body>
-                                    </Card>
+
+                                <Card key={element.id} className="w-100 m-1" border="warning" style={{ width: '18rem' }}>
+                                    <Card.Header>
+                                        Appointment
+                                        <CustomButton
+                                            title={<img className="actionsIcon" src="../../../img/editIcon.png" />}
+                                            className={"actions"}
+                                        />
+                                        <CustomButton
+                                            title={<img className="actionsIcon" src="../../../img/trashIcon.png" />}
+                                            className={"actions"}
+                                        />
+                                    </Card.Header>
+                                    <Card.Body>
+                                        <Card.Title>{`${dayjs(element.appointmentDate).format("DD/MM/YYYY")}  ---------  ${dayjs(element.appointmentDate).format("hh:mm A")}`}</Card.Title>
+                                        <div className="d-flex justify-content-between">
+                                            {userType === "worker" || userType === "admin" && (<span>{`Client: ${element.client.firstName}`}</span>)}
+                                            {userType === "admin" && (<span>{`Worker: ${element.worker.firstName}`}</span>)}
+                                        </div>
+                                        <ul key={element.id}>
+                                            {(element.appointmentPortfolios).map((portfolio) => {
+                                                return (<li key={portfolio.id}>{`${portfolio.name} ---- ${portfolio.price}€`}
+                                                </li>)
+                                            })}
+                                        </ul>
+                                    </Card.Body>
+                                </Card>
                             )
                         })}
                         {userType === "admin" && (
@@ -79,7 +100,7 @@ export const Appointments = () => {
                                     }
                                 }}>{"<-"}</button>
                                 <button disabled={currentPage == totalPages ? "disabled" : ""} onClick={() => {
-                                    
+
                                     if (currentPage < totalPages) {
                                         setCurrentPage(currentPage + 1)
                                     }
