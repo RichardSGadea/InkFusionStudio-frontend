@@ -1,15 +1,18 @@
 import { useSelector } from "react-redux"
 import { getUserData } from "../../app/Slices/userSlice"
 import { useEffect, useState } from "react"
-import { bringAllAppointments, bringAppointmentsUsers, bringAppointmentsWorkers } from "../../services/apiCalls"
+import { bringAllAppointments, bringAppointmentsUsers, bringAppointmentsWorkers} from "../../services/apiCalls"
 import dayjs from "dayjs"
 import Card from 'react-bootstrap/Card';
 import "./Appointments.css"
 import { CustomButton } from "../../components/CustomButton/CustomButton"
+import AppointmentModal from "../../components/AppointmentModal/AppointmentModal"
 
 export const Appointments = () => {
 
     const [userAppointments, setUserAppointments] = useState([])
+
+
     const [totalPages, setTotalPages] = useState()
     const [currentPage, setCurrentPage] = useState(1)
 
@@ -42,6 +45,7 @@ export const Appointments = () => {
         fetchAppointments()
     }, [currentPage])
 
+
     return (
 
         <div className="container-fluid appointmentsDesign bg-secondary">
@@ -49,10 +53,10 @@ export const Appointments = () => {
 
                 <div className="col-3 bg-secondary p-0 d-flex justify-content-center align-items-center ">
                     {userType === "client" &&
-                        <CustomButton
-                            title={"CREATE NEW APPOINTMENT"}
-                            className={"newAppointment m-0 w-50"}
-
+                        <AppointmentModal
+                            titleProp={"NEW APPOINTMENT"}
+                            classNameProp={"p-0 fs-3 bg-transparent"}
+                            modalFormProp={"new"}
                         />
                     }
                 </div>
@@ -67,11 +71,19 @@ export const Appointments = () => {
                                     <Card.Header>
                                         Appointment
                                         <CustomButton
-                                            title={<img className="actionsIcon" src="../../../img/editIcon.png" />}
+                                            title={<AppointmentModal 
+                                                titleProp={<img className="actionsIcon" src="../../../img/editIcon.png" />}
+                                                classNameProp={"bg-transparent"}
+                                                modalFormProp={"edit"}
+                                            />}
                                             className={"actions"}
                                         />
                                         <CustomButton
-                                            title={<img className="actionsIcon" src="../../../img/trashIcon.png" />}
+                                            title={<AppointmentModal 
+                                                titleProp={<img className="actionsIcon" src="../../../img/trashIcon.png" />}
+                                                classNameProp={"bg-transparent"}
+                                                modalFormProp={"delete"}
+                                            />}
                                             className={"actions"}
                                         />
                                     </Card.Header>
@@ -81,7 +93,7 @@ export const Appointments = () => {
                                             {userType === "worker" || userType === "admin" && (<span>{`Client: ${element.client.firstName}`}</span>)}
                                             {userType === "admin" && (<span>{`Worker: ${element.worker.firstName}`}</span>)}
                                         </div>
-                                        <ul key={element.id}>
+                                        <ul>
                                             {(element.appointmentPortfolios).map((portfolio) => {
                                                 return (<li key={portfolio.id}>{`${portfolio.name} ---- ${portfolio.price}€`}
                                                 </li>)

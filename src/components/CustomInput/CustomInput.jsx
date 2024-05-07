@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import "./CustomInput.css"
 
 export const CustomInput = ({
@@ -11,6 +12,8 @@ export const CustomInput = ({
   value
 }) => {
   // props, properties (obj)
+
+  
 
   return (
     <div className="custom-input-container">

@@ -112,3 +112,35 @@ export const bringAllAppointments = async (token,page) => {
     const res = await axios.get(`${API_URL}/appointments/general/?page=${page}`, config)
     return res.data
 }
+
+export const bringWorkers = async (token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    const res = await axios.get(`${API_URL}/users/workers`, config)
+    return res.data.workers
+
+}
+
+export const bringPortfolios = async (token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    const res = await axios.get(`${API_URL}/users/portfolio`, config)
+    return res.data.portfolios
+
+}
+
+export const createAppointment = async (data,token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    const res = await axios.post(`${API_URL}/appointments/`, data,config);
+    return res
+}
