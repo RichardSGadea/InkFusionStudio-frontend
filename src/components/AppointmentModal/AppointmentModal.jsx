@@ -23,6 +23,7 @@ function AppointmentModal({ titleProp, classNameProp, modalFormProp, appointment
 
     const userReduxData = useSelector(getUserData)
     const token = userReduxData.token
+    const userType = userReduxData.decoded.userRole
 
     const [show, setShow] = useState(false);
 
@@ -141,8 +142,8 @@ function AppointmentModal({ titleProp, classNameProp, modalFormProp, appointment
 
                             {
                                 modalFormProp === "new" ? (createAppointment(newAppointment, token))
-                                : modalFormProp === "edit" ? updateAppointmentById(appointmentData,appointmentData.id, token)
-                                    : modalFormProp === "delete" && deleteAppointmentById(token,appointmentData.id)
+                                : modalFormProp === "edit" ? updateAppointmentById(userType,appointmentData,appointmentData.id, token)
+                                    : modalFormProp === "delete" && deleteAppointmentById(userType,token,appointmentData.id)
                             }
                             handleClose()
                         }}>

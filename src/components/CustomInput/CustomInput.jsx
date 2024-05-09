@@ -23,7 +23,7 @@ export const CustomInput = ({
         name={nameProp}
         placeholder={placeholderProp}
         onChange={(e) => handlerProp(e)}
-        // onBlur={(e) => onBlurHandler(e)}
+        onBlur={(e) => onBlurHandler(e)}
         disabled={isDisabled}
         value={value} 
       />

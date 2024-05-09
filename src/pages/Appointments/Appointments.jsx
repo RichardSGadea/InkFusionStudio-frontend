@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
 import { getUserData } from "../../app/Slices/userSlice"
 import { useEffect, useState } from "react"
-import { bringAllAppointments, bringAppointmentsUsers, bringAppointmentsWorkers, bringOneAppointment} from "../../services/apiCalls"
+import { bringAllAppointments, bringAppointmentsUsers, bringAppointmentsWorkers, bringOneAppointment } from "../../services/apiCalls"
 import dayjs from "dayjs"
 import Card from 'react-bootstrap/Card';
 import "./Appointments.css"
@@ -12,7 +12,7 @@ export const Appointments = () => {
 
     const [userAppointments, setUserAppointments] = useState([])
     const [oneUserAppointment, setOneUserAppointment] = useState({
-        appointmentDate:""
+        appointmentDate: ""
     })
 
     const [totalPages, setTotalPages] = useState()
@@ -37,7 +37,6 @@ export const Appointments = () => {
                     setTotalPages(res.total_pages)
                 }
 
-
             } catch (error) {
                 console.log(error);
             }
@@ -45,9 +44,9 @@ export const Appointments = () => {
         fetchAppointments()
     }, [currentPage])
 
-    const fetchOneAppointment = async (id) =>{
+    const fetchOneAppointment = async (id) => {
         try {
-            const res = await bringOneAppointment(token,id);
+            const res = await bringOneAppointment(token, id);
             setOneUserAppointment(res)
         } catch (error) {
             console.log(error);
@@ -60,10 +59,6 @@ export const Appointments = () => {
             [e.target.name]: e.target.value
         }))
     }
-
-    useEffect(()=>{
-        console.log(oneUserAppointment);
-    },[oneUserAppointment])
 
     return (
 
@@ -89,27 +84,29 @@ export const Appointments = () => {
                                 <Card key={element.id} className="w-100 m-1" border="warning" style={{ width: '18rem' }}>
                                     <Card.Header>
                                         Appointment
-                                        <CustomButton
-                                            functionEmit={()=> fetchOneAppointment(element.id)}
-                                            title={<AppointmentModal 
-                                                titleProp={<img className="actionsIcon" src="../../../img/editIcon.png" />}
-                                                classNameProp={"bg-transparent"}
-                                                modalFormProp={"edit"}
-                                                appointmentData={oneUserAppointment}
-                                                inputHandlerProp={inputHandler}
-                                            />}
-                                            className={"actions"}
-                                        />
-                                        <CustomButton
-                                            functionEmit={()=> fetchOneAppointment(element.id)}
-                                            title={<AppointmentModal 
-                                                titleProp={<img className="actionsIcon" src="../../../img/trashIcon.png" />}
-                                                classNameProp={"bg-transparent"}
-                                                appointmentData={oneUserAppointment}
-                                                modalFormProp={"delete"}
-                                            />}
-                                            className={"actions"}
-                                        />
+                                        
+                                                <CustomButton
+                                                    functionEmit={() => fetchOneAppointment(element.id)}
+                                                    title={<AppointmentModal
+                                                        titleProp={<img className="actionsIcon" src="../../../img/editIcon.png" />}
+                                                        classNameProp={"bg-transparent"}
+                                                        modalFormProp={"edit"}
+                                                        appointmentData={oneUserAppointment}
+                                                        inputHandlerProp={inputHandler}
+                                                    />}
+                                                    className={"actions"}
+                                                />
+                                                <CustomButton
+                                                    functionEmit={() => fetchOneAppointment(element.id)}
+                                                    title={<AppointmentModal
+                                                        titleProp={<img className="actionsIcon" src="../../../img/trashIcon.png" />}
+                                                        classNameProp={"bg-transparent"}
+                                                        appointmentData={oneUserAppointment}
+                                                        modalFormProp={"delete"}
+                                                    />}
+                                                    className={"actions"}
+                                                />
+                                            
                                     </Card.Header>
                                     <Card.Body>
                                         <Card.Title>{`${dayjs(element.appointmentDate).format("DD/MM/YYYY")}  ---------  ${dayjs(element.appointmentDate).format("hh:mm A")}`}</Card.Title>
@@ -130,7 +127,6 @@ export const Appointments = () => {
                         {userType === "admin" && (
                             <div className="d-flex">
                                 <button disabled={currentPage == 1 ? "disabled" : ""} onClick={() => {
-                                    console.log(currentPage)
                                     if (currentPage > 1) {
                                         setCurrentPage(currentPage - 1)
                                     }
@@ -140,7 +136,6 @@ export const Appointments = () => {
                                     if (currentPage < totalPages) {
                                         setCurrentPage(currentPage + 1)
                                     }
-                                    console.log(currentPage)
                                 }}>{"->"}</button>
                             </div>
                         )}
