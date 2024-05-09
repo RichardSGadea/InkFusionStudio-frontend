@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
 import { getUserData } from "../../app/Slices/userSlice"
 import { useEffect, useState } from "react"
-import { bringAllAppointments, bringAppointmentsUsers, bringAppointmentsWorkers} from "../../services/apiCalls"
+import { bringAllAppointments, bringAppointmentsUsers, bringAppointmentsWorkers, bringOneAppointment} from "../../services/apiCalls"
 import dayjs from "dayjs"
 import Card from 'react-bootstrap/Card';
 import "./Appointments.css"
@@ -11,28 +11,26 @@ import AppointmentModal from "../../components/AppointmentModal/AppointmentModal
 export const Appointments = () => {
 
     const [userAppointments, setUserAppointments] = useState([])
-
+    const [oneUserAppointment, setOneUserAppointment] = useState({})
 
     const [totalPages, setTotalPages] = useState()
     const [currentPage, setCurrentPage] = useState(1)
 
     const userReduxData = useSelector(getUserData)
     const userType = userReduxData.decoded.userRole
+    const token = userReduxData.token
 
     useEffect(() => {
         const fetchAppointments = async () => {
             try {
                 if (userType === "client") {
                     const res = await bringAppointmentsUsers(userReduxData.token)
-                    console.log(res);
                     setUserAppointments(res)
                 } else if (userType === "worker") {
                     const res = await bringAppointmentsWorkers(userReduxData.token)
-                    console.log(res);
                     setUserAppointments(res)
                 } else {
                     const res = await bringAllAppointments(userReduxData.token, currentPage)
-                    console.log(res);
                     setUserAppointments(res.appointments)
                     setTotalPages(res.total_pages)
                 }
@@ -44,6 +42,22 @@ export const Appointments = () => {
         }
         fetchAppointments()
     }, [currentPage])
+
+    const fetchOneAppointment = async (id) =>{
+        try {
+            const res = await bringOneAppointment(token,id);
+            setOneUserAppointment(res)
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const inputHandler = (e) => {
+        setOneUserAppointment((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value
+        }))
+    }
 
 
     return (
@@ -71,10 +85,13 @@ export const Appointments = () => {
                                     <Card.Header>
                                         Appointment
                                         <CustomButton
+                                            functionEmit={()=> fetchOneAppointment(element.id)}
                                             title={<AppointmentModal 
                                                 titleProp={<img className="actionsIcon" src="../../../img/editIcon.png" />}
                                                 classNameProp={"bg-transparent"}
                                                 modalFormProp={"edit"}
+                                                appointmentData={oneUserAppointment}
+                                                inputHandlerProp={inputHandler}
                                             />}
                                             className={"actions"}
                                         />

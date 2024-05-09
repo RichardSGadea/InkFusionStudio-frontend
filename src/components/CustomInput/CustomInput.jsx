@@ -1,4 +1,3 @@
-import { useLocation } from "react-router-dom";
 import "./CustomInput.css"
 
 export const CustomInput = ({
@@ -23,9 +22,9 @@ export const CustomInput = ({
         name={nameProp}
         placeholder={placeholderProp}
         onChange={(e) => handlerProp(e)}
-        onBlur={(e) => onBlurHandler(e)}
+        // onBlur={(e) => onBlurHandler(e)}
         disabled={isDisabled}
-        value={value}
+        value={value} 
       />
       <p>{errorText}</p>
     </div>

@@ -37,14 +37,13 @@ export const Profile = () => {
         const fetchProfile = async () => {
             const myProfileData = await bringProfile(token)
             setProfileData(myProfileData)
-            // console.log(myProfileData)
         }
         fetchProfile()
     }, [])
     
 
     return (
-        <div className="settignsDesign bg-secondary container-fluid">
+        <div className="settingsDesign bg-secondary container-fluid">
             <div className="row">
                 <div className="col-12 col-md-4 p-0">
                     <div className="sidePanel d-flex flex-column justify-content-start align-items-start w-100">

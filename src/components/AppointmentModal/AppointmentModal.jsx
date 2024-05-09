@@ -2,18 +2,25 @@ import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { CustomInput } from '../CustomInput/CustomInput';
-import { bringPortfolios, bringWorkers, createAppointment } from '../../services/apiCalls';
+import { bringPortfolios, bringWorkers, createAppointment, deleteAppointmentById, updateAppointmentById } from '../../services/apiCalls';
+import dayjs from "dayjs"
 import { useSelector } from 'react-redux';
 import { getUserData } from '../../app/Slices/userSlice';
 import { useNavigate } from 'react-router-dom';
+import "./AppointmentModal.css"
 
-function AppointmentModal({ titleProp, classNameProp, modalFormProp }) {
-    // const [modalForm,setModalForm] = useState(modalFormProp)
-    const [appointmentData, setAppointmentData] = useState({
-        appointment_date: "",
+function AppointmentModal({ titleProp, classNameProp, modalFormProp, appointmentData, inputHandlerProp }) {
+    
+    const [newAppointment, setNewAppointment] = useState({
+        appointmentDate: "",
         emailWorker: "",
         nameJob: "",
     })
+
+    const [editAppointment, setEditAppointment] = useState({
+        appointmentDate: "",
+    })
+    
 
     const [workers, setWorkers] = useState([])
     const [portfolios, setPortfolios] = useState([])
@@ -25,25 +32,32 @@ function AppointmentModal({ titleProp, classNameProp, modalFormProp }) {
     const [show, setShow] = useState(false);
 
     const handleClose = () => {
+        setShow(false)
         navigate("/")
         setTimeout(() => {
             navigate("/appointments")
         })
-        setShow(false)
-
-
     };
     const handleShow = () => setShow(true);
 
     const inputHandler = (e) => {
-        setAppointmentData((prevSate) => ({
+        setNewAppointment((prevSate) => ({
             ...prevSate,
             [e.target.name]: e.target.value
         }));
+        
+    }
+
+    const inputEditHandler = (e) => {
+        setEditAppointment((prevSate) => ({
+            ...prevSate,
+            [e.target.name]: e.target.value
+        }));
+        
     }
 
     const resetInputHandler = () => {
-        setAppointmentData({
+        setNewAppointment({
             appointment_date: "",
             emailWorker: "",
             nameJob: "",
@@ -72,9 +86,7 @@ function AppointmentModal({ titleProp, classNameProp, modalFormProp }) {
         fetchPortfolios()
     }, [])
 
-    useEffect(() => {
-        console.log(appointmentData);
-    }, [appointmentData])
+    
 
 
     return (
@@ -94,7 +106,7 @@ function AppointmentModal({ titleProp, classNameProp, modalFormProp }) {
                                 <CustomInput
                                     errorText={""}
                                     typeProp={"datetime-local"}
-                                    nameProp={"appointment_date"}
+                                    nameProp={"appointmentDate"}
                                     placeholderProp={"Date"}
                                     handlerProp={(e) => inputHandler(e)}
                                     onBlurHandler={(e) => inputHandler(e)}
@@ -116,28 +128,18 @@ function AppointmentModal({ titleProp, classNameProp, modalFormProp }) {
                         : modalFormProp === "edit"
                             ? (<>
                                 <CustomInput
-                                    errorText={""}
                                     typeProp={"datetime-local"}
-                                    nameProp={"appointment_date"}
+                                    nameProp={"appointmentDate"}
+                                    errorText={""}
+                                    isDisabled=""
                                     placeholderProp={"Date"}
-                                    handlerProp={(e) => inputHandler(e)}
-                                    onBlurHandler={(e) => inputHandler(e)}
+                                    handlerProp={inputHandlerProp}
+                                    onBlurHandler={(e) => inputEditHandler(e)}
+                                    value={`${dayjs(appointmentData.appointmentDate).format('YYYY-MM-DDTHH:mm')}`}
                                 />
-                                <select onChange={(e) => inputHandler(e)} name="emailWorker" >
-                                    <option value="" hidden >Select Worker...</option>
-                                    {workers.map((element) => {
-                                        return (<option key={element.id} value={element.email}>{element.firstName}</option>)
-                                    })}
-                                </select>
-                                <select onChange={(e) => inputHandler(e)} name="nameJob" >
-                                    <option value="" hidden >Select Job...</option>
-                                    {portfolios.map((element) => {
-                                        return (<option key={element.id} value={element.name}>{element.name}</option>)
-                                    })}
-                                </select>
                             </>
                             )
-                            : ("adios")
+                            : ("Are you sure?")
                     }
                 </Modal.Body>
                 <Modal.Footer>
@@ -151,10 +153,15 @@ function AppointmentModal({ titleProp, classNameProp, modalFormProp }) {
                     </Button>
                     <Button className='text-success' onClick={
                         () => {
+
+                            {
+                                modalFormProp === "new" ? (createAppointment(newAppointment, token))
+                                : modalFormProp === "edit" ? updateAppointmentById()
+                                    : deleteAppointmentById()
+                            }
                             handleClose()
-                            createAppointment(appointmentData, token)
                         }}>
-                        Save Changes
+                        {modalFormProp === "delete" ? "Delete" : "Save Changes"}
                     </Button>
                 </Modal.Footer>
             </Modal>

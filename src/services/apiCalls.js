@@ -144,3 +144,33 @@ export const createAppointment = async (data,token) => {
     const res = await axios.post(`${API_URL}/appointments/`, data,config);
     return res
 }
+
+export const bringOneAppointment = async (token,id) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    const res = await axios.get(`${API_URL}/appointments/client/${id}`,config)
+    return res.data
+}
+
+export const updateAppointmentById = async (data,id,token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    const res = await axios.put(`${API_URL}/appointments/:${id}`, data,config);
+    return res
+}
+
+export const deleteAppointmentById = async (token,id) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    const res = await axios.delete(`${API_URL}/appointments/${id}`,config)
+    return res
+}

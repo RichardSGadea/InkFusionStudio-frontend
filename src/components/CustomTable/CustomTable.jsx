@@ -12,7 +12,12 @@ function CustomTable() {
     const [infoData, setInfoData] = useState([])
     const [totalPages, setTotalPages] = useState()
     const [currentPage, setCurrentPage] = useState(1)
-    const [userProfile, setUserProfile] = useState({})
+    const [userProfile, setUserProfile] = useState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: ""
+    })
     const [areYouDeletingMe, setAreYouDeletingMe] = useState(null);
 
     const location = useLocation()
