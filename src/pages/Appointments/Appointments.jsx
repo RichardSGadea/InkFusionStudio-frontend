@@ -101,9 +101,11 @@ export const Appointments = () => {
                                             className={"actions"}
                                         />
                                         <CustomButton
+                                            functionEmit={()=> fetchOneAppointment(element.id)}
                                             title={<AppointmentModal 
                                                 titleProp={<img className="actionsIcon" src="../../../img/trashIcon.png" />}
                                                 classNameProp={"bg-transparent"}
+                                                appointmentData={oneUserAppointment}
                                                 modalFormProp={"delete"}
                                             />}
                                             className={"actions"}

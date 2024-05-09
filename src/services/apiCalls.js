@@ -161,7 +161,6 @@ export const updateAppointmentById = async (data,id,token) => {
             Authorization: `Bearer ${token}`
         }
     }
-    console.log(data,id,token);
     const res = await axios.put(`${API_URL}/appointments/${id}`, data,config)
     return res
 }

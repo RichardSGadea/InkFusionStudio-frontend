@@ -142,7 +142,7 @@ function AppointmentModal({ titleProp, classNameProp, modalFormProp, appointment
                             {
                                 modalFormProp === "new" ? (createAppointment(newAppointment, token))
                                 : modalFormProp === "edit" ? updateAppointmentById(appointmentData,appointmentData.id, token)
-                                    : deleteAppointmentById()
+                                    : modalFormProp === "delete" && deleteAppointmentById(token,appointmentData.id)
                             }
                             handleClose()
                         }}>
