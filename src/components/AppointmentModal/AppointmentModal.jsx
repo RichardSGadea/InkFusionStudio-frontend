@@ -12,13 +12,13 @@ import "./AppointmentModal.css"
 function AppointmentModal({ titleProp, classNameProp, modalFormProp, appointmentData, inputHandlerProp }) {
     
     const [newAppointment, setNewAppointment] = useState({
-        appointmentDate: "",
+        appointment_date: "",
         emailWorker: "",
         nameJob: "",
     })
 
     const [editAppointment, setEditAppointment] = useState({
-        appointmentDate: "",
+        appointment_date: "",
     })
     
 
@@ -106,7 +106,7 @@ function AppointmentModal({ titleProp, classNameProp, modalFormProp, appointment
                                 <CustomInput
                                     errorText={""}
                                     typeProp={"datetime-local"}
-                                    nameProp={"appointmentDate"}
+                                    nameProp={"appointment_date"}
                                     placeholderProp={"Date"}
                                     handlerProp={(e) => inputHandler(e)}
                                     onBlurHandler={(e) => inputHandler(e)}
@@ -129,13 +129,13 @@ function AppointmentModal({ titleProp, classNameProp, modalFormProp, appointment
                             ? (<>
                                 <CustomInput
                                     typeProp={"datetime-local"}
-                                    nameProp={"appointmentDate"}
+                                    nameProp={"appointment_date"}
                                     errorText={""}
                                     isDisabled=""
                                     placeholderProp={"Date"}
                                     handlerProp={inputHandlerProp}
                                     onBlurHandler={(e) => inputEditHandler(e)}
-                                    value={`${dayjs(appointmentData.appointmentDate).format('YYYY-MM-DDTHH:mm')}`}
+                                    value={`${dayjs(appointmentData.appointment_date).format('YYYY-MM-DDTHH:mm')}`}
                                 />
                             </>
                             )
@@ -156,7 +156,7 @@ function AppointmentModal({ titleProp, classNameProp, modalFormProp, appointment
 
                             {
                                 modalFormProp === "new" ? (createAppointment(newAppointment, token))
-                                : modalFormProp === "edit" ? updateAppointmentById()
+                                : modalFormProp === "edit" ? updateAppointmentById(editAppointment, token)
                                     : deleteAppointmentById()
                             }
                             handleClose()
