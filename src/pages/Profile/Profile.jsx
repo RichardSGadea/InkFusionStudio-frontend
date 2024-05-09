@@ -40,6 +40,10 @@ export const Profile = () => {
         }
         fetchProfile()
     }, [])
+
+    useEffect(()=>{
+        console.log(profileData);
+    },[profileData])
     
 
     return (

@@ -11,7 +11,9 @@ import AppointmentModal from "../../components/AppointmentModal/AppointmentModal
 export const Appointments = () => {
 
     const [userAppointments, setUserAppointments] = useState([])
-    const [oneUserAppointment, setOneUserAppointment] = useState({})
+    const [oneUserAppointment, setOneUserAppointment] = useState({
+        appointmentDate:""
+    })
 
     const [totalPages, setTotalPages] = useState()
     const [currentPage, setCurrentPage] = useState(1)
@@ -59,6 +61,9 @@ export const Appointments = () => {
         }))
     }
 
+    useEffect(()=>{
+        console.log(oneUserAppointment);
+    },[oneUserAppointment])
 
     return (
 
