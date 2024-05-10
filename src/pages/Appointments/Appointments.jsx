@@ -83,30 +83,30 @@ export const Appointments = () => {
 
                                 <Card key={element.id} className="w-100 m-1" border="warning" style={{ width: '18rem' }}>
                                     <Card.Header>
-                                        Appointment
                                         
-                                                <CustomButton
-                                                    functionEmit={() => fetchOneAppointment(element.id)}
-                                                    title={<AppointmentModal
-                                                        titleProp={<img className="actionsIcon" src="../../../img/editIcon.png" />}
-                                                        classNameProp={"bg-transparent"}
-                                                        modalFormProp={"edit"}
-                                                        appointmentData={oneUserAppointment}
-                                                        inputHandlerProp={inputHandler}
-                                                    />}
-                                                    className={"actions"}
-                                                />
-                                                <CustomButton
-                                                    functionEmit={() => fetchOneAppointment(element.id)}
-                                                    title={<AppointmentModal
-                                                        titleProp={<img className="actionsIcon" src="../../../img/trashIcon.png" />}
-                                                        classNameProp={"bg-transparent"}
-                                                        appointmentData={oneUserAppointment}
-                                                        modalFormProp={"delete"}
-                                                    />}
-                                                    className={"actions"}
-                                                />
-                                            
+                                            Appointment
+                                            <CustomButton
+                                                functionEmit={() => fetchOneAppointment(element.id)}
+                                                title={<AppointmentModal
+                                                    titleProp={<img className="actionsIcon" src="../../../img/editIcon.png" />}
+                                                    classNameProp={"bg-transparent"}
+                                                    modalFormProp={"edit"}
+                                                    appointmentData={oneUserAppointment}
+                                                    inputHandlerProp={inputHandler}
+                                                />}
+                                                className={"actions"}
+                                            />
+                                            <CustomButton
+                                                functionEmit={() => fetchOneAppointment(element.id)}
+                                                title={<AppointmentModal
+                                                    titleProp={<img className="actionsIcon" src="../../../img/trashIcon.png" />}
+                                                    classNameProp={"bg-transparent"}
+                                                    appointmentData={oneUserAppointment}
+                                                    modalFormProp={"delete"}
+                                                />}
+                                                className={"actions"}
+                                            />
+                                        
                                     </Card.Header>
                                     <Card.Body>
                                         <Card.Title>{`${dayjs(element.appointmentDate).format("DD/MM/YYYY")}  ---------  ${dayjs(element.appointmentDate).format("hh:mm A")}`}</Card.Title>

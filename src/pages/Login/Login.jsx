@@ -83,7 +83,6 @@ export const Login = () => {
                                     handlerProp={(e) => inputHandler(e)}
                                     placeholderProp={"e-mail"}
                                     onBlurHandler={(e) => inputValidatorHandler(e)}
-                                    // errorText={isValidContent.email ? "" : "email incorrecto"}
                                     errorText={isValidContent.email}
                                 />
                                 <CustomInput
@@ -92,7 +91,6 @@ export const Login = () => {
                                     handlerProp={(e) => inputHandler(e)}
                                     placeholderProp={"password"}
                                     onBlurHandler={(e) => inputValidatorHandler(e)}
-                                    // errorText={isValidContent.email ? "" : "email incorrecto"}
                                     errorText={isValidContent.password}
                                 />
                                 <div className="options d-flex">
