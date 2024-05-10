@@ -51,20 +51,20 @@ function Header() {
                                                     {userType === admin
                                                         ? (
                                                             <>
-                                                                <NavDropdown.Item className="itemsDropDown" href="/contact">Contact</NavDropdown.Item>
+                                                                <NavDropdown.Item className="itemsDropDown" href="/home">Contact</NavDropdown.Item>
                                                                 <NavDropdown.Item className="itemsDropDown" href="/profile">Profile</NavDropdown.Item>
                                                                 <NavDropdown.Item className="itemsDropDown" href="/users">Users</NavDropdown.Item>
                                                                 <NavDropdown.Divider />
                                                             </>
                                                         ) : userType === worker ? (
                                                             <>
-                                                                <NavDropdown.Item className="itemsDropDown" href="/contact">Contact</NavDropdown.Item>
+                                                                <NavDropdown.Item className="itemsDropDown" href="/home">Contact</NavDropdown.Item>
                                                                 <NavDropdown.Item className="itemsDropDown" href="/profile">Profile</NavDropdown.Item>
                                                                 <NavDropdown.Divider />
                                                             </>
                                                         ) : (
                                                             <>
-                                                                <NavDropdown.Item className="itemsDropDown" href="/contact">Contact</NavDropdown.Item>
+                                                                <NavDropdown.Item className="itemsDropDown" href="/home">Contact</NavDropdown.Item>
                                                                 <NavDropdown.Item className="itemsDropDown" href="/profile">Profile</NavDropdown.Item>
                                                                 <NavDropdown.Divider />
                                                             </>

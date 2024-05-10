@@ -97,7 +97,7 @@ function AppointmentModal({ titleProp, classNameProp, modalFormProp, appointment
                 <Modal.Body>
                     {modalFormProp === "new"
                         ? (
-                            <>
+                            <div className='modalNewAppointment-design'>
                                 <CustomInput
                                     errorText={""}
                                     typeProp={"datetime-local"}
@@ -118,7 +118,7 @@ function AppointmentModal({ titleProp, classNameProp, modalFormProp, appointment
                                         return (<option key={element.id} value={element.name}>{element.name}</option>)
                                     })}
                                 </select>
-                            </>
+                            </div>
                         )
                         : modalFormProp === "edit"
                             ? (<>
