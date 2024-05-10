@@ -1,10 +1,10 @@
 import Table from 'react-bootstrap/Table';
 import { useEffect, useState } from 'react';
-import { bringAllClients, bringAllWorkers, bringOneUser, deleteUserById } from '../../services/apiCalls';
+import { bringAllClients, bringAllWorkers, bringOneUser, deleteUserById} from '../../services/apiCalls';
 import { useSelector } from 'react-redux';
 import { getUserData } from '../../app/Slices/userSlice';
 import ModalCustom from '../ModalCustom/ModalCustom';
-import { useLocation } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import "./CustomTable.css"
 
 function CustomTable() {
@@ -12,25 +12,20 @@ function CustomTable() {
     const [infoData, setInfoData] = useState([])
     const [totalPages, setTotalPages] = useState()
     const [currentPage, setCurrentPage] = useState(1)
-    // const [userProfile, setUserProfile] = useState({
-    //     firstName: "",
-    //     lastName: "",
-    //     email: "",
-    //     password: ""
-    // })
-    const [areYouDeletingMe, setAreYouDeletingMe] = useState(null);
-
-    const location = useLocation()
-    const path = location.pathname
-
-    const myPassport = useSelector(getUserData);
-    const token = myPassport.token
     const [userProfile, setUserProfile] = useState({
         firstName: "",
         lastName: "",
         email: "",
         password: ""
     })
+    const [areYouDeletingMe, setAreYouDeletingMe] = useState(null);
+    const navigate = useNavigate()
+
+    const location = useLocation()
+    const path = location.pathname
+
+    const myPassport = useSelector(getUserData);
+    const token = myPassport.token
 
     const inputHandler = (e) => {
         setUserProfile((prevState) => ({
@@ -47,13 +42,6 @@ function CustomTable() {
             console.log(error);
         }
     }
-
-    // const inputHandler = (e) => {
-    //     setUserProfile((prevState) => ({
-    //         ...prevState,
-    //         [e.target.name]: e.target.value
-    //     }))
-    // }
 
 
     useEffect(() => {
@@ -75,7 +63,7 @@ function CustomTable() {
             }
         }
         fetchUsers()
-    }, [])
+    }, [currentPage])
 
     // Function to start deleted user and show or hidden confirmation button
     const deleteUserStepOne = (id) => {
@@ -86,10 +74,14 @@ function CustomTable() {
         }
     };
 
-    const deleteUser = async (id) => {
-        const res = await deleteUserById(token, id);
-        console.log(res);
-    };
+    const deleteUser = async(id,role) => {
+        const res = await deleteUserById(token,id,role)
+        
+        navigate("/")
+        setTimeout(() => {
+            navigate("/users")
+        })
+    } 
 
     return (
         <div className='container-fluid'>
@@ -132,7 +124,10 @@ function CustomTable() {
                                                     ? "delete-button confirm-delete "
                                                     : "delete-button confirm-delete display-none"
                                             }
-                                            onClick={() => deleteUser(item.id)}
+                                            onClick={() => {
+                                                deleteUser(item.id,item.roleId)
+                                                
+                                            }}
                                         >Confirm</div>
 
                                     </div>

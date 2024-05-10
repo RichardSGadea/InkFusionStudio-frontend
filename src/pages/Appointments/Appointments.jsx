@@ -21,7 +21,6 @@ export const Appointments = () => {
     const userReduxData = useSelector(getUserData)
     const userType = userReduxData.decoded.userRole
     const token = userReduxData.token
-    console.log(userType);
 
     useEffect(() => {
         const fetchAppointments = async () => {

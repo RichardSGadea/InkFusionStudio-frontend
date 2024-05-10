@@ -30,8 +30,6 @@ function ModalCustom({ profileData, userId, inputHandler, token , path, function
         })
         setShow(false);
     } 
-        
-    console.log(profileData);
 
     const inputValidatorHandler = (e) => {
         const errorMessage = inputValidator(e.target.value, e.target.name)
@@ -105,7 +103,7 @@ function ModalCustom({ profileData, userId, inputHandler, token , path, function
                         typeProp="password"
                         nameProp="password"
                         placeholderProp="password"
-                        value={profileData.password}
+                        value={profileData?.password}
                         isDisabled=""
                         handlerProp={inputHandler}
                         onBlurHandler={(e) => inputValidatorHandler(e)}
@@ -117,7 +115,6 @@ function ModalCustom({ profileData, userId, inputHandler, token , path, function
                         Close
                     </Button>
                     <Button className="btnSave" variant="primary" onClick={() => {
-                        console.log(profileData);
                         handleUpdate() 
                         handleClose()
                     }}>
