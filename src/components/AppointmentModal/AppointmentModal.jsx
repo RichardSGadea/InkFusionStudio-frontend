@@ -16,6 +16,9 @@ function AppointmentModal({ titleProp, classNameProp, modalFormProp, appointment
         emailWorker: "",
         nameJob: "",
     })
+    const [editAppointment, setEditAppointment] = useState({
+        appointmentDate: "",
+    })
     
     const [workers, setWorkers] = useState([])
     const [portfolios, setPortfolios] = useState([])
@@ -42,6 +45,13 @@ function AppointmentModal({ titleProp, classNameProp, modalFormProp, appointment
             [e.target.name]: e.target.value
         }));
         
+    }
+
+    const inputHandlerEdit = (e) => {
+        setEditAppointment((prevSate) => ({
+            ...prevSate,
+            [e.target.name]: e.target.value
+        }));
     }
 
     const resetInputHandler = () => {
@@ -73,7 +83,6 @@ function AppointmentModal({ titleProp, classNameProp, modalFormProp, appointment
         fetchWorkers()
         fetchPortfolios()
     }, [])
-
 
     return (
         <>
@@ -120,7 +129,7 @@ function AppointmentModal({ titleProp, classNameProp, modalFormProp, appointment
                                     isDisabled=""
                                     placeholderProp={"Date"}
                                     handlerProp={inputHandlerProp}
-                                    // onBlurHandler={(e) => inputEditHandler(e)}
+                                    onBlurHandler={(e) => inputHandlerEdit(e)}
                                     value={`${dayjs(appointmentData.appointmentDate).format('YYYY-MM-DDTHH:mm')}`}
                                 />
                             </>
