@@ -9,15 +9,12 @@ import { getUserData } from '../../app/Slices/userSlice';
 import { useNavigate } from 'react-router-dom';
 import "./AppointmentModal.css"
 
-function AppointmentModal({ titleProp, classNameProp, modalFormProp, appointmentData, inputHandlerProp }) {
+function AppointmentModal({ titleProp,functionEmit, classNameProp, modalFormProp, appointmentData, inputHandlerProp, appointmentId }) {
     
     const [newAppointment, setNewAppointment] = useState({
         appointmentDate: "",
         emailWorker: "",
         nameJob: "",
-    })
-    const [editAppointment, setEditAppointment] = useState({
-        appointmentDate: "",
     })
     
     const [workers, setWorkers] = useState([])
@@ -47,12 +44,6 @@ function AppointmentModal({ titleProp, classNameProp, modalFormProp, appointment
         
     }
 
-    const inputHandlerEdit = (e) => {
-        setEditAppointment((prevSate) => ({
-            ...prevSate,
-            [e.target.name]: e.target.value
-        }));
-    }
 
     const resetInputHandler = () => {
         setNewAppointment({
@@ -86,7 +77,10 @@ function AppointmentModal({ titleProp, classNameProp, modalFormProp, appointment
 
     return (
         <>
-            <Button className={classNameProp} onClick={handleShow}>
+            <Button className={classNameProp} onClick={()=>{
+                functionEmit(appointmentId)
+                handleShow()
+                }}>
                 {titleProp}
             </Button>
 
@@ -129,7 +123,7 @@ function AppointmentModal({ titleProp, classNameProp, modalFormProp, appointment
                                     isDisabled=""
                                     placeholderProp={"Date"}
                                     handlerProp={inputHandlerProp}
-                                    onBlurHandler={(e) => inputHandlerEdit(e)}
+                                    onBlurHandler={(e) => inputHandlerProp(e)}
                                     value={`${dayjs(appointmentData.appointmentDate).format('YYYY-MM-DDTHH:mm')}`}
                                 />
                             </>

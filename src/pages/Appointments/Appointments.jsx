@@ -63,7 +63,7 @@ export const Appointments = () => {
     return (
 
         <div className="container-fluid appointmentsDesign bg-secondary">
-            <div className="row">
+            <div className="row bg-secondary">
 
                 <div className="col-12 col-md-3 bg-secondary p-0 d-flex justify-content-center align-items-start ">
                     {userType === "client" &&
@@ -83,30 +83,38 @@ export const Appointments = () => {
 
                                 <Card key={element.id} className="w-100 m-1" border="warning" style={{ width: '18rem' }}>
                                     <Card.Header>
-                                        
-                                            Appointment
-                                            <CustomButton
-                                                functionEmit={() => fetchOneAppointment(element.id)}
-                                                title={<AppointmentModal
-                                                    titleProp={<img className="actionsIcon" src="../../../img/editIcon.png" />}
-                                                    classNameProp={"bg-transparent"}
-                                                    modalFormProp={"edit"}
-                                                    appointmentData={oneUserAppointment}
-                                                    inputHandlerProp={inputHandler}
-                                                />}
-                                                className={"actions"}
-                                            />
-                                            <CustomButton
-                                                functionEmit={() => fetchOneAppointment(element.id)}
-                                                title={<AppointmentModal
-                                                    titleProp={<img className="actionsIcon" src="../../../img/trashIcon.png" />}
-                                                    classNameProp={"bg-transparent"}
-                                                    appointmentData={oneUserAppointment}
-                                                    modalFormProp={"delete"}
-                                                />}
-                                                className={"actions"}
-                                            />
-                                        
+
+                                        Appointment
+                                        {userType === "admin" || userType === "client" &&
+                                            <>
+
+                                                <CustomButton
+                                                    
+                                                    title={<AppointmentModal
+                                                        functionEmit={fetchOneAppointment}
+                                                        appointmentId={element.id}
+                                                        titleProp={<img className="actionsIcon" src="../../../img/editIcon.png" />}
+                                                        classNameProp={"bg-transparent"}
+                                                        modalFormProp={"edit"}
+                                                        appointmentData={oneUserAppointment}
+                                                        inputHandlerProp={inputHandler}
+                                                    />}
+                                                    className={"actions"}
+                                                />
+                                                <CustomButton
+                                                    title={<AppointmentModal
+                                                        functionEmit={fetchOneAppointment}
+                                                        appointmentId={element.id}
+                                                        titleProp={<img className="actionsIcon" src="../../../img/trashIcon.png" />}
+                                                        classNameProp={"bg-transparent"}
+                                                        appointmentData={oneUserAppointment}
+                                                        modalFormProp={"delete"}
+                                                    />}
+                                                    className={"actions"}
+                                                />
+                                            </>
+                                        }
+
                                     </Card.Header>
                                     <Card.Body>
                                         <Card.Title>{`${dayjs(element.appointmentDate).format("DD/MM/YYYY")}  ---------  ${dayjs(element.appointmentDate).format("hh:mm A")}`}</Card.Title>

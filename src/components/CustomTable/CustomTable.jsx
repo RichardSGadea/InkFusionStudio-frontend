@@ -12,12 +12,12 @@ function CustomTable() {
     const [infoData, setInfoData] = useState([])
     const [totalPages, setTotalPages] = useState()
     const [currentPage, setCurrentPage] = useState(1)
-    const [userProfile, setUserProfile] = useState({
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: ""
-    })
+    // const [userProfile, setUserProfile] = useState({
+    //     firstName: "",
+    //     lastName: "",
+    //     email: "",
+    //     password: ""
+    // })
     const [areYouDeletingMe, setAreYouDeletingMe] = useState(null);
 
     const location = useLocation()
@@ -25,6 +25,19 @@ function CustomTable() {
 
     const myPassport = useSelector(getUserData);
     const token = myPassport.token
+    const [userProfile, setUserProfile] = useState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: ""
+    })
+
+    const inputHandler = (e) => {
+        setUserProfile((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value
+        }))
+    }
 
     const bringUserProfile = async (id) => {
         try {
@@ -35,12 +48,13 @@ function CustomTable() {
         }
     }
 
-    const inputHandler = (e) => {
-        setUserProfile((prevState) => ({
-            ...prevState,
-            [e.target.name]: e.target.value
-        }))
-    }
+    // const inputHandler = (e) => {
+    //     setUserProfile((prevState) => ({
+    //         ...prevState,
+    //         [e.target.name]: e.target.value
+    //     }))
+    // }
+
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -61,7 +75,7 @@ function CustomTable() {
             }
         }
         fetchUsers()
-    }, [currentPage])
+    }, [])
 
     // Function to start deleted user and show or hidden confirmation button
     const deleteUserStepOne = (id) => {
@@ -98,10 +112,12 @@ function CustomTable() {
                                 <td>{item.email}</td>
                                 <td>{item.isActive ? "si" : "no"}</td>
                                 <td>
-                                    <div className='btn d-flex align-items-end' onClick={() => bringUserProfile(item.id)}>
+                                    <div className='btn d-flex align-items-end'>
                                         <ModalCustom
+                                            functionEmit={bringUserProfile}
                                             profileData={userProfile}
                                             inputHandler={inputHandler}
+                                            userId={item.id}
                                             path={path}
                                             token={token}
                                         />

@@ -7,7 +7,7 @@ import { updateProfile, updateProfileById } from "../../services/apiCalls";
 import "./ModalCustom.css"
 import { inputValidator } from "../../utils/validators";
 
-function ModalCustom({ profileData, inputHandler, token , path}) {
+function ModalCustom({ profileData, userId, inputHandler, token , path, functionEmit}) {
     const [show, setShow] = useState(false);
 
     const [isValidContent, setIsValidContent] = useState({
@@ -15,7 +15,6 @@ function ModalCustom({ profileData, inputHandler, token , path}) {
         email: "",
         lastName: ""
     })
-
     const navigate = useNavigate();
 
     const handleClose = () =>{
@@ -32,7 +31,7 @@ function ModalCustom({ profileData, inputHandler, token , path}) {
         setShow(false);
     } 
         
-    //console.log(profileData);
+    console.log(profileData);
 
     const inputValidatorHandler = (e) => {
         const errorMessage = inputValidator(e.target.value, e.target.name)
@@ -59,7 +58,10 @@ function ModalCustom({ profileData, inputHandler, token , path}) {
 
     return (
         <>
-            <Button className={path==="/users" ? "btnModifyId" : ""} variant="primary" onClick={() => setShow(true)}>
+            <Button className={path==="/users" ? "btnModifyId" : ""} variant="primary" onClick={() => {
+                path==="/users" && functionEmit(userId)
+                setShow(true)
+            }}>
                 Modify
             </Button>
 
@@ -115,7 +117,7 @@ function ModalCustom({ profileData, inputHandler, token , path}) {
                         Close
                     </Button>
                     <Button className="btnSave" variant="primary" onClick={() => {
-                        console.log(isValidContent);
+                        console.log(profileData);
                         handleUpdate() 
                         handleClose()
                     }}>
