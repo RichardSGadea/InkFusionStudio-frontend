@@ -78,7 +78,7 @@ function AppointmentModal({ titleProp,functionEmit, classNameProp, modalFormProp
     return (
         <>
             <Button className={classNameProp} onClick={()=>{
-                functionEmit(appointmentId)
+                modalFormProp=== "edit" && functionEmit(appointmentId)
                 handleShow()
                 }}>
                 {titleProp}
@@ -146,7 +146,7 @@ function AppointmentModal({ titleProp,functionEmit, classNameProp, modalFormProp
                             {
                                 modalFormProp === "new" ? (createAppointment(newAppointment, token))
                                 : modalFormProp === "edit" ? updateAppointmentById(userType,appointmentData,appointmentData.id, token)
-                                    : modalFormProp === "delete" && deleteAppointmentById(userType,token,appointmentData.id)
+                                    : modalFormProp === "delete" && deleteAppointmentById(userType,token,appointmentId)
                             }
                             handleClose()
                         }}>

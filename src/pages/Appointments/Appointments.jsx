@@ -21,6 +21,7 @@ export const Appointments = () => {
     const userReduxData = useSelector(getUserData)
     const userType = userReduxData.decoded.userRole
     const token = userReduxData.token
+    console.log(userType);
 
     useEffect(() => {
         const fetchAppointments = async () => {
@@ -85,8 +86,11 @@ export const Appointments = () => {
                                     <Card.Header>
 
                                         Appointment
-                                        {userType === "admin" || userType === "client" &&
-                                            <>
+                                        {userType === "worker" ?
+                                            (<>
+                                            </>)
+                                            :(
+                                                <>
 
                                                 <CustomButton
                                                     
@@ -113,6 +117,7 @@ export const Appointments = () => {
                                                     className={"actions"}
                                                 />
                                             </>
+                                            )
                                         }
 
                                     </Card.Header>
@@ -130,30 +135,30 @@ export const Appointments = () => {
                                         </ul>
                                     </Card.Body>
                                 </Card>
-                            )
+                    )
                         })}
-                        {userType === "admin" && (
-                            <div className="d-flex">
-                                <button disabled={currentPage == 1 ? "disabled" : ""} onClick={() => {
-                                    if (currentPage > 1) {
-                                        setCurrentPage(currentPage - 1)
-                                    }
-                                }}>{"<-"}</button>
-                                <button disabled={currentPage == totalPages ? "disabled" : ""} onClick={() => {
+                    {userType === "admin" && (
+                        <div className="d-flex">
+                            <button disabled={currentPage == 1 ? "disabled" : ""} onClick={() => {
+                                if (currentPage > 1) {
+                                    setCurrentPage(currentPage - 1)
+                                }
+                            }}>{"<-"}</button>
+                            <button disabled={currentPage == totalPages ? "disabled" : ""} onClick={() => {
 
-                                    if (currentPage < totalPages) {
-                                        setCurrentPage(currentPage + 1)
-                                    }
-                                }}>{"->"}</button>
-                            </div>
-                        )}
-                    </div>
-                </div>
-                <div className="col-3 bg-secondary p-0">
-
+                                if (currentPage < totalPages) {
+                                    setCurrentPage(currentPage + 1)
+                                }
+                            }}>{"->"}</button>
+                        </div>
+                    )}
                 </div>
             </div>
+            <div className="col-3 bg-secondary p-0">
+
+            </div>
         </div>
+        </div >
 
 
     )
