@@ -65,7 +65,7 @@ export const Appointments = () => {
         <div className="container-fluid appointmentsDesign bg-secondary">
             <div className="row">
 
-                <div className="col-3 bg-secondary p-0 d-flex justify-content-center align-items-center ">
+                <div className="col-12 col-md-3 bg-secondary p-0 d-flex justify-content-center align-items-start ">
                     {userType === "client" &&
                         <AppointmentModal
                             titleProp={"NEW APPOINTMENT"}
@@ -76,7 +76,7 @@ export const Appointments = () => {
                 </div>
 
 
-                <div className="col-6 p-0">
+                <div className="col-11 col-lg-6 p-0">
                     <div className="d-flex flex-column justify-content-start align-items-start bg-secondary">
                         {userAppointments.map((element) => {
                             return (

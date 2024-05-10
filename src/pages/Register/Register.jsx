@@ -41,7 +41,7 @@ export const Register = () => {
 
     }
 
-    const errorText=""
+    const errorText = ""
 
     const registerMe = async (e) => {
         try {
@@ -55,7 +55,6 @@ export const Register = () => {
                 }, 2000);
             }
         } catch (error) {
-            console.log(error)
             const errorMessage = error.response.data.message;
             setRegisterError(errorMessage)
         }
@@ -104,7 +103,8 @@ export const Register = () => {
                             />
                             <a className="p-2 link-white" href="/login">Do you have an account? Login</a>
                         </div>
-                        <h5>{registerError}</h5>
+                            <p className="inputs-error">{registerError}</p>
+
 
                     </div>
                 </div>

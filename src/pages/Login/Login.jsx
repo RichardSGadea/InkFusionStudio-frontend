@@ -21,8 +21,6 @@ export const Login = () => {
         password: ""
     })
 
-    const [loginError, setLoginError] = useState("");
-
     const [msg, setMsg] = useState("");
 
     const navigate = useNavigate();
@@ -35,11 +33,9 @@ export const Login = () => {
             ...prevSate,
             [e.target.name]: errorMessage
         }))
-        // console.log("is "+ e.target.value + " a valid "+ e.target.name + "?", isValid);
     }
 
     const inputHandler = (e) => {
-
         setCredentials((prevSate) => ({
             ...prevSate,
             [e.target.name]: e.target.value
@@ -60,7 +56,7 @@ export const Login = () => {
 
             dispatch(login(passport))
 
-            setMsg(`${uDecoded.userRole}, bienvenid@ de nuevo.`)
+            setMsg(`${uDecoded.userRole}, welcome back.`)
 
             setTimeout(() => {
                 navigate("/home")

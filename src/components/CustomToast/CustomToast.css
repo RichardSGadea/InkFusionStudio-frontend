@@ -1,0 +1,16 @@
+.toast-design {
+    position: absolute;
+    font-size: 0.5em;
+
+}
+
+.toast-btn:hover {
+    background-color: transparent;
+}
+
+@media(max-width:768px) {
+    .toast-design {
+        font-size: 0.3em;
+        width:26em
+    }
+}

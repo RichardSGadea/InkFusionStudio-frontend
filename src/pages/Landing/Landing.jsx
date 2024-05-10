@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom"
 import "./Landing.css"
+import { CustomButton } from "../../components/CustomButton/CustomButton"
+import CustomToast from "../../components/CustomToast/CustomToast"
 
 export const Landing = () => {
+
+    //Landing page
 
     return (
         <>
@@ -15,16 +19,25 @@ export const Landing = () => {
                                 </video>
                             </div>
                             <div className="d-flex justify-content-center flex-column align-items-center">
-                                {/* <span className="text-center text-white text-lg">
-                                    Ink Fusion Studio
-                                </span> */}
-                                <div>
-                                    <Link to="/login" className="btn">
+                                <div className="d-flex">
+                                    <CustomToast
+                                        btnProp={<CustomButton
+                                            title={"Gallery"}
+                                            className={" btnToast fs-5 w-100 m-0 p-0 "}
+                                        />}
+                                        titleProp={"Message"}
+                                        contentProp={
+                                            <div className="">
+                                                <span>
+                                                Coming Soon: Our website is currently under construction. Exciting updates are on the way!
+                                                </span>
+                                            </div>
+                                        }
+                                    />
+                                    <Link to="/login" className="btn fs-5 btn-light p-0 m-0">
                                         Login
                                     </Link>
-                                    <Link to="/gallery" className="btn">
-                                        Gallery
-                                    </Link>
+
                                 </div>
                             </div>
 
