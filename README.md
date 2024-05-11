@@ -1,6 +1,6 @@
 <p align="center">☠✒Estudio de Tatuajes Frontend✒☠</p>
 <br>
-![capture](./img/Recording.gif)
+![capture](./Recording.gif)
 <br>
 <p align="center">Proyecto del Bootcamp de Full Stack Developer de Geekshubs Academy.</p>
 
