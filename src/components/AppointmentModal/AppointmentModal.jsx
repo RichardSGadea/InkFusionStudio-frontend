@@ -11,14 +11,18 @@ import "./AppointmentModal.css"
 
 function AppointmentModal({ titleProp,functionEmit, classNameProp, modalFormProp, appointmentData, inputHandlerProp, appointmentId }) {
     
+    //To save the info selected about a new appointment
     const [newAppointment, setNewAppointment] = useState({
         appointmentDate: "",
         emailWorker: "",
         nameJob: "",
     })
     
+    //To save the workers and jobs 
     const [workers, setWorkers] = useState([])
     const [portfolios, setPortfolios] = useState([])
+
+
     const navigate = useNavigate()
 
     const userReduxData = useSelector(getUserData)
@@ -36,6 +40,8 @@ function AppointmentModal({ titleProp,functionEmit, classNameProp, modalFormProp
     };
     const handleShow = () => setShow(true);
 
+
+    //Take the inputs control with this handlers
     const inputHandler = (e) => {
         setNewAppointment((prevSate) => ({
             ...prevSate,
@@ -43,8 +49,6 @@ function AppointmentModal({ titleProp,functionEmit, classNameProp, modalFormProp
         }));
         
     }
-
-
     const resetInputHandler = () => {
         setNewAppointment({
             appointment_date: "",
@@ -53,8 +57,11 @@ function AppointmentModal({ titleProp,functionEmit, classNameProp, modalFormProp
         })
     }
 
+
+
     useEffect(() => {
         const fetchWorkers = async () => {
+            //Function to retrieve workers
             try {
                 const res = await bringWorkers(userReduxData.token)
                 setWorkers(res)
@@ -64,6 +71,7 @@ function AppointmentModal({ titleProp,functionEmit, classNameProp, modalFormProp
         }
         const fetchPortfolios = async () => {
             try {
+                //Function to retrieve jobs
                 const res = await bringPortfolios(userReduxData.token)
                 setPortfolios(res)
             } catch (error) {

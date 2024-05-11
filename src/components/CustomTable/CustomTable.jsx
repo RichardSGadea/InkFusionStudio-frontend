@@ -9,18 +9,25 @@ import "./CustomTable.css"
 
 function CustomTable() {
 
+    //To save all clients or workers depending selected
     const [infoData, setInfoData] = useState([])
-    const [totalPages, setTotalPages] = useState()
-    const [currentPage, setCurrentPage] = useState(1)
+
     const [userProfile, setUserProfile] = useState({
         firstName: "",
         lastName: "",
         email: "",
         password: ""
     })
-    const [areYouDeletingMe, setAreYouDeletingMe] = useState(null);
-    const navigate = useNavigate()
 
+    //To control pages change
+    const [totalPages, setTotalPages] = useState()
+    const [currentPage, setCurrentPage] = useState(1)
+
+    //To control delete button hidden
+    const [areYouDeletingMe, setAreYouDeletingMe] = useState(null);
+
+
+    const navigate = useNavigate()
     const location = useLocation()
     const path = location.pathname
 
@@ -35,6 +42,7 @@ function CustomTable() {
     }
 
     const bringUserProfile = async (id) => {
+        //Function to retrieve one info user
         try {
             const response = await bringOneUser(token, id)
             setUserProfile(response)
@@ -46,6 +54,7 @@ function CustomTable() {
 
     useEffect(() => {
         const fetchUsers = async () => {
+            //Function to retrieve users depending on the role
             try {
                 const usersSelected = sessionStorage.getItem("selected")
                 if (usersSelected === "clients") {
@@ -65,8 +74,9 @@ function CustomTable() {
         fetchUsers()
     }, [currentPage])
 
-    // Function to start deleted user and show or hidden confirmation button
+    
     const deleteUserStepOne = (id) => {
+        // Function to start deleted user and show or hidden confirmation button
         if (areYouDeletingMe === id) {
             setAreYouDeletingMe(null);
         } else {
@@ -75,8 +85,8 @@ function CustomTable() {
     };
 
     const deleteUser = async(id,role) => {
+        // Function to delete user
         const res = await deleteUserById(token,id,role)
-        
         navigate("/")
         setTimeout(() => {
             navigate("/users")

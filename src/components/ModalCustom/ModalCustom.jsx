@@ -18,8 +18,8 @@ function ModalCustom({ profileData, userId, inputHandler, token , path, function
     const navigate = useNavigate();
 
     const handleClose = () =>{
-        //doble navigate para forzar a recargar el profile al cancelar la modificación de datos de perfil
-        //para que llame de nuevo a la API y los recupere
+        //double navigate to force the profile to be reloaded when canceling profile data modification
+        //so that it calls the API again and retrieves them
         navigate("/")
         setTimeout(() => {
             if(path==="/users"){

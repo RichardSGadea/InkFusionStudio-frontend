@@ -18,7 +18,7 @@ function Header() {
 
     const dispatch = useDispatch()
 
-
+    //To render depending on role
     const userType = myPassport?.decoded.userRole;
     const admin = "admin"
     const client = "client"
