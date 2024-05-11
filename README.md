@@ -1,12 +1,12 @@
 <p align="center">☠✒Estudio de Tatuajes Frontend✒☠</p>
-<br>
+
 ![capture](./Recording.gif)
-<br>
+
 <p align="center">Proyecto del Bootcamp de Full Stack Developer de Geekshubs Academy.</p>
 
 ## Contenidos del Readme
 
-- ### 🚀 [Descripcion](#Descripcion)
+- ### 🚀 [Descripcion](#Descripción)
 - ### 🛠️ [Tecnologías Utilizadas](#Tecnologías-utilizadas)
 - ### 🎯 [Funcionalidades](#Funcionalidades)
 - ### ⚙️ [Instrucciones de uso](#Intrucciones-de-uso)
@@ -14,12 +14,12 @@
 - ### 📧 [Contribuciones](#Contribuciones)
 
 ---
-## Descripcion 
+## Descripción 
 
 **Ink Fusion Studio** es un proyecto que recrea el frontend de un estudio de tatuajes con un sistema de gestión de citas. Forma parte del quinto proyecto del Bootcamp Full Stack Developer en GeeksHubs Academy. La aplicación permite a los usuarios registrarse, realizar login, acceder a su área de cliente y gestionar citas con tatuadores. Además, proporciona funcionalidades específicas para el administrador, como la gestión de usuarios y citas. El objetivo principal es crear una plataforma que permita a clientes, trabajadores y administradores acceder a información relevante según su rol específico.
 
 ---
-## Tecnologias utilizadas:
+## Tecnologías utilizadas:
 
 [![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white&labelColor=101010)]()
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white&labelColor=101010)]()
