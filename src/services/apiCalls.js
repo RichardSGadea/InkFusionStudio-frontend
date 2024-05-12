@@ -33,7 +33,7 @@ export const updateProfile = async (data, token) => {
             Authorization: `Bearer ${token}`
         }
     }
-    
+    console.log(data);
     const res = await axios.put(`${API_URL}/users/profile`, data, config)
     return res
 }

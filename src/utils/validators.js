@@ -10,5 +10,8 @@ export const inputValidator = (inputValue, inputName) => {
     if (inputName === "email" && (!inputValue.includes("@") || !inputValue.includes("."))){
         return "Invalid Email"
     }
+    if((inputName === "yourPassword" && inputValue.length <8)  || (inputName === "newPassword" && inputValue.length <8)){
+        return "Password should have 8 or more characters"
+    }
     return ""
 }
